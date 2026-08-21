@@ -43,30 +43,69 @@
             border: 1px solid #374151;
             font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
         }
+
+        @media (max-width: 640px) {
+            html {
+                font-size: 100%;
+            }
+
+            body {
+                overflow-wrap: anywhere;
+            }
+
+            .bg-card {
+                backdrop-filter: none;
+                padding: 1rem;
+            }
+
+            .space-y-8 > :not([hidden]) ~ :not([hidden]) {
+                margin-top: 1.25rem;
+            }
+
+            .space-y-8 > .bg-card > .flex:first-child {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.25rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .space-y-8 > .bg-card > .flex:first-child > span {
+                line-height: 1.4;
+            }
+
+            .grid {
+                gap: 1.25rem;
+            }
+
+            .bg-card .text-orange-400 {
+                flex-wrap: wrap;
+                row-gap: 0.5rem;
+            }
+        }
     </style>
 </head>
-<body class="max-w-4xl mx-auto px-6 py-12">
+<body class="max-w-4xl mx-auto px-4 py-7 sm:px-6 sm:py-12">
 
     <!-- Matrix Animation Canvas -->
     <canvas id="matrix-canvas"></canvas>
 
     <!-- Header Section -->
-    <header class="mb-12 border-b border-subtle pb-8">
-        <h1 class="text-3xl font-bold text-white mb-2">Kostya Sydoruk</h1>
-        <p class="text-lg text-orange-400 font-medium mb-4">Lead Software Engineer | C# & Unity Specialist</p>
+    <header class="mb-10 sm:mb-12 border-b border-subtle pb-6 sm:pb-8">
+        <h1 class="text-3xl font-bold text-white mb-2 leading-tight">Kostya Sydoruk</h1>
+        <p class="text-base sm:text-lg text-orange-400 font-medium mb-4 leading-snug">Lead Software Engineer | C# & Unity Specialist</p>
         <p class="text-sm text-gray-300 max-w-2xl leading-relaxed mb-6">
             Software engineer with over 12 years of experience across industrial automation, healthcare, VR simulation, and games. I work mainly with C#, Unity, .NET, hardware integrations, and computer vision.
         </p>
-        <div class="flex gap-4 text-sm font-mono text-gray-400">
-            <a href="mailto:Sydoruk.kostya@gmail.com" class="hover:text-orange-400 transition-colors">email: Sydoruk.kostya@gmail.com</a>
-            <span>·</span>
+        <div class="flex flex-col sm:flex-row gap-1 sm:gap-4 text-sm font-mono text-gray-400">
+            <a href="mailto:Sydoruk.kostya@gmail.com" class="hover:text-orange-400 transition-colors break-all sm:break-normal">email: Sydoruk.kostya@gmail.com</a>
+            <span class="hidden sm:inline">·</span>
             <a href="https://github.com/SyDroX" target="_blank" class="hover:text-orange-400 transition-colors">github: @SyDroX</a>
         </div>
     </header>
 
     <!-- Professional Experience & Major Projects -->
-    <section class="mb-14">
-        <h2 class="text-xl font-semibold text-white mb-6 border-b border-subtle pb-2">Featured Systems & Production Work</h2>
+    <section class="mb-10 sm:mb-14">
+        <h2 class="text-lg sm:text-xl font-semibold text-white mb-5 sm:mb-6 border-b border-subtle pb-2 leading-snug">Featured Systems & Production Work</h2>
         
         <div class="space-y-8">
 
@@ -194,8 +233,8 @@
     </section>
 
     <!-- Independent Projects & Game Jams -->
-    <section class="mb-14">
-        <h2 class="text-xl font-semibold text-white mb-6 border-b border-subtle pb-2">Independent Projects & Game Jams</h2>
+    <section class="mb-10 sm:mb-14">
+        <h2 class="text-lg sm:text-xl font-semibold text-white mb-5 sm:mb-6 border-b border-subtle pb-2 leading-snug">Independent Projects & Game Jams</h2>
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
@@ -290,7 +329,10 @@
                         <span class="badge px-2 py-0.5 rounded">android</span>
                         <span class="badge px-2 py-0.5 rounded">swipe-controls</span>
                     </div>
-                    <a href="https://youtube.com/shorts/Hgt7yur5RKc" target="_blank" class="text-xs font-mono text-orange-400 hover:underline hover:text-orange-300">Watch Short →</a>
+                    <div class="flex gap-3 text-xs font-mono text-orange-400">
+                        <a href="https://www.mediafire.com/file/2cuujenfjrc3ecz/Ormi.29.12.2024.apk/file" target="_blank" class="hover:underline hover:text-orange-300">Download APK →</a>
+                        <a href="https://youtube.com/shorts/Hgt7yur5RKc" target="_blank" class="hover:underline hover:text-orange-300">Watch Short →</a>
+                    </div>
                 </div>
             </div>
 
@@ -357,7 +399,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="border-t border-subtle pt-6 text-xs text-gray-500 font-mono flex justify-between">
+    <footer class="border-t border-subtle pt-6 text-xs text-gray-500 font-mono flex flex-col gap-2 sm:flex-row sm:justify-between">
         <span>Kostya Sydoruk · 2026</span>
         <a href="#top" class="hover:text-orange-400 transition-colors">Back to top ↑</a>
     </footer>
