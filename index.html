@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kostya Sydoruk // Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Scales all Tailwind text sizes by 1.15x */
+        html {
+            font-size: 115%;
+        }
+
+        body {
+            background-color: #0d1117;
+            color: #c9d1d9;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            position: relative;
+        }
+        
+        /* Matrix Background Canvas */
+        #matrix-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            opacity: 0.18; /* Subtle background opacity */
+            pointer-events: none;
+        }
+
+        .border-subtle {
+            border-color: #30363d;
+        }
+        .bg-card {
+            background-color: rgba(22, 27, 34, 0.92); /* Semi-transparent card to let matrix show slightly */
+            backdrop-filter: blur(4px);
+        }
+        .badge {
+            background-color: #21262d;
+            color: #f97316; /* Orange text for badges */
+            border: 1px solid #374151;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        }
+    </style>
+</head>
+<body class="max-w-4xl mx-auto px-6 py-12">
+
+    <!-- Matrix Animation Canvas -->
+    <canvas id="matrix-canvas"></canvas>
+
+    <!-- Header Section -->
+    <header class="mb-12 border-b border-subtle pb-8">
+        <h1 class="text-3xl font-bold text-white mb-2">Kostya Sydoruk</h1>
+        <p class="text-lg text-orange-400 font-medium mb-4">Lead Software Engineer | C# & Unity Specialist</p>
+        <p class="text-sm text-gray-300 max-w-2xl leading-relaxed mb-6">
+            Software engineer with over 12 years of experience across industrial automation, healthcare, VR simulation, and games. I work mainly with C#, Unity, .NET, hardware integrations, and computer vision.
+        </p>
+        <div class="flex gap-4 text-sm font-mono text-gray-400">
+            <a href="mailto:Sydoruk.kostya@gmail.com" class="hover:text-orange-400 transition-colors">email: Sydoruk.kostya@gmail.com</a>
+            <span>·</span>
+            <a href="https://github.com/SyDroX" target="_blank" class="hover:text-orange-400 transition-colors">github: @SyDroX</a>
+        </div>
+    </header>
+
+    <!-- Professional Experience & Major Projects -->
+    <section class="mb-14">
+        <h2 class="text-xl font-semibold text-white mb-6 border-b border-subtle pb-2">Featured Systems & Production Work</h2>
+        
+        <div class="space-y-8">
+
+            <!-- SkillReal -->
+            <div class="bg-card p-6 rounded-lg border border-subtle">
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="text-lg font-bold text-white">Automotive Inspection Pipeline</h3>
+                    <span class="text-xs font-mono text-gray-400">Lead Engineer @ SkillReal (2025–Present)</span>
+                </div>
+                <p class="text-sm text-gray-300 mb-4 leading-relaxed">
+                    Work on the application-side integration for an automotive inspection system, connecting software with factory hardware and implementing the related business logic. Built fault handling, communication recovery, monitoring, and simulation tools used to test production scenarios.
+                </p>
+                <div class="flex flex-wrap gap-2 text-xs font-mono">
+                    <span class="badge px-2.5 py-1 rounded">c#</span>
+                    <span class="badge px-2.5 py-1 rounded">.net core</span>
+                    <span class="badge px-2.5 py-1 rounded">unity</span>
+                    <span class="badge px-2.5 py-1 rounded">python</span>
+                    <span class="badge px-2.5 py-1 rounded">mongodb</span>
+                    <span class="badge px-2.5 py-1 rounded">industrial-automation</span>
+                    <span class="badge px-2.5 py-1 rounded">ci/cd</span>
+                    <span class="badge px-2.5 py-1 rounded">observability</span>
+                </div>
+            </div>
+
+            <!-- GaitBetter -->
+            <div class="bg-card p-6 rounded-lg border border-subtle">
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="text-lg font-bold text-white">GaitBetter Rehabilitation Platform</h3>
+                    <span class="text-xs font-mono text-gray-400">Senior Engineer @ GaitBetter (2022–2024)</span>
+                </div>
+                <p class="text-sm text-gray-300 mb-4 leading-relaxed">
+                    Helped move a legacy Unity application toward a modular system using .NET Core services and web APIs. Developed rehabilitation games that use real-time foot tracking, and worked on gameplay, SQLite-based offline storage, and running the tracking system on lower-spec hardware.
+                </p>
+                <div class="flex flex-wrap gap-2 text-xs font-mono mb-4">
+                    <span class="badge px-2.5 py-1 rounded">c#</span>
+                    <span class="badge px-2.5 py-1 rounded">unity</span>
+                    <span class="badge px-2.5 py-1 rounded">.net core</span>
+                    <span class="badge px-2.5 py-1 rounded">distributed-systems</span>
+                    <span class="badge px-2.5 py-1 rounded">sqlite</span>
+                    <span class="badge px-2.5 py-1 rounded">computer-vision</span>
+                    <span class="badge px-2.5 py-1 rounded">rest-api</span>
+                </div>
+                <div class="flex gap-4 text-xs font-mono text-orange-400">
+                    <a href="https://youtu.be/p-ZyW23O-6U" target="_blank" class="hover:underline hover:text-orange-300">Watch Intro Video →</a>
+                    <a href="https://youtube.com/shorts/wN-bFhF7riQ?feature=share" target="_blank" class="hover:underline hover:text-orange-300">Watch Demo →</a>
+                </div>
+            </div>
+
+            <!-- Intuitive Surgical -->
+            <div class="bg-card p-6 rounded-lg border border-subtle">
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="text-lg font-bold text-white">Surgical Synthetic Data Generator</h3>
+                    <span class="text-xs font-mono text-gray-400">Synthetic Data Engineer @ Intuitive Surgical (2022)</span>
+                </div>
+                <p class="text-sm text-gray-300 mb-4 leading-relaxed">
+                    Created synthetic surgical datasets in Unity and Unreal Engine, including RGB, depth, and UV outputs for machine-learning and computer-vision work. Built Python tools to automate dataset checks and validate generated data.
+                </p>
+                <div class="flex flex-wrap gap-2 text-xs font-mono">
+                    <span class="badge px-2.5 py-1 rounded">unity</span>
+                    <span class="badge px-2.5 py-1 rounded">unreal-engine</span>
+                    <span class="badge px-2.5 py-1 rounded">python</span>
+                    <span class="badge px-2.5 py-1 rounded">computer-vision</span>
+                    <span class="badge px-2.5 py-1 rounded">synthetic-data</span>
+                </div>
+            </div>
+
+            <!-- Simbionix VR -->
+            <div class="bg-card p-6 rounded-lg border border-subtle">
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="text-lg font-bold text-white">VR Medical & Combat Simulations</h3>
+                    <span class="text-xs font-mono text-gray-400">VR Software Engineer @ 3D Systems (2019–2021)</span>
+                </div>
+                <p class="text-sm text-gray-300 mb-4 leading-relaxed">
+                    Developed VR training simulations for defense, emergency response, and healthcare. Integrated motion-tracking hardware and sensors, and worked on client-server networking for shared multi-user scenarios.
+                </p>
+                <div class="flex flex-wrap gap-2 text-xs font-mono mb-4">
+                    <span class="badge px-2.5 py-1 rounded">c#</span>
+                    <span class="badge px-2.5 py-1 rounded">unity</span>
+                    <span class="badge px-2.5 py-1 rounded">vr</span>
+                    <span class="badge px-2.5 py-1 rounded">motion-tracking</span>
+                    <span class="badge px-2.5 py-1 rounded">networking</span>
+                </div>
+                <div class="flex gap-4 text-xs font-mono text-orange-400">
+                    <a href="https://youtu.be/6w0lbcc4y1o" target="_blank" class="hover:underline hover:text-orange-300">Trauma VR Demo →</a>
+                    <a href="https://youtu.be/ZTjvy0G3Q5M" target="_blank" class="hover:underline hover:text-orange-300">Combat Simulator Demo →</a>
+                </div>
+            </div>
+
+            <!-- Israeli Air Force - Ofek (Team Lead) -->
+            <div class="bg-card p-6 rounded-lg border border-subtle">
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="text-lg font-bold text-white">Internal Enterprise Systems</h3>
+                    <span class="text-xs font-mono text-gray-400">Team Lead & Senior Full Stack @ Israeli Air Force – Ofek (2015–2018)</span>
+                </div>
+                <p class="text-sm text-gray-300 mb-4 leading-relaxed">
+                    Led a six-person development team building and maintaining ASP.NET web applications. Worked across application architecture, database design, delivery, and day-to-day technical support for the team.
+                </p>
+                <div class="flex flex-wrap gap-2 text-xs font-mono">
+                    <span class="badge px-2.5 py-1 rounded">c#</span>
+                    <span class="badge px-2.5 py-1 rounded">asp.net</span>
+                    <span class="badge px-2.5 py-1 rounded">sql-server</span>
+                    <span class="badge px-2.5 py-1 rounded">team-leadership</span>
+                    <span class="badge px-2.5 py-1 rounded">enterprise-architecture</span>
+                </div>
+            </div>
+
+            <!-- Israeli Air Force - Ofek (Developer) -->
+            <div class="bg-card p-6 rounded-lg border border-subtle">
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="text-lg font-bold text-white">Military Web Systems</h3>
+                    <span class="text-xs font-mono text-gray-400">Full Stack Developer @ Israeli Air Force – Ofek (2012–2015)</span>
+                </div>
+                <p class="text-sm text-gray-300 mb-4 leading-relaxed">
+                    Built and maintained internal web applications in a military software environment, working on server-side code, user interfaces, and SQL Server databases.
+                </p>
+                <div class="flex flex-wrap gap-2 text-xs font-mono">
+                    <span class="badge px-2.5 py-1 rounded">c#</span>
+                    <span class="badge px-2.5 py-1 rounded">.net</span>
+                    <span class="badge px-2.5 py-1 rounded">sql-server</span>
+                    <span class="badge px-2.5 py-1 rounded">web-development</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Independent Projects & Game Jams -->
+    <section class="mb-14">
+        <h2 class="text-xl font-semibold text-white mb-6 border-b border-subtle pb-2">Independent Projects & Game Jams</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+            <!-- Mask Of The Queen -->
+            <div class="bg-card p-5 rounded-lg border border-subtle flex flex-col justify-between">
+                <div>
+                    <h3 class="text-base font-bold text-white mb-1">Mask Of The Queen</h3>
+                    <p class="text-xs text-gray-400 mb-3">Global Game Jam 2026</p>
+                    <p class="text-sm text-gray-300 mb-4 leading-relaxed">
+                        Action game about surviving in a hive by taking masks from enemies. Each mask gives you an identity for a limited time while you work toward defeating the Queen.
+                    </p>
+                </div>
+                <div>
+                    <div class="flex flex-wrap gap-1.5 text-xs font-mono mb-3">
+                        <span class="badge px-2 py-0.5 rounded">c#</span>
+                        <span class="badge px-2 py-0.5 rounded">unity</span>
+                        <span class="badge px-2 py-0.5 rounded">webgl</span>
+                    </div>
+                    <a href="https://sydrox.itch.io/mask-of-the-queen" target="_blank" class="text-xs font-mono text-orange-400 hover:underline hover:text-orange-300">Play in Browser →</a>
+                </div>
+            </div>
+
+            <!-- Body Aparts -->
+            <div class="bg-card p-5 rounded-lg border border-subtle flex flex-col justify-between">
+                <div>
+                    <h3 class="text-base font-bold text-white mb-1">Body Aparts</h3>
+                    <p class="text-xs text-gray-400 mb-3">Global Game Jam 2024</p>
+                    <p class="text-sm text-gray-300 mb-4 leading-relaxed">
+                        In this co-op game with crazy controls, you're a scientist who got bisected by an experiment gone wrong! Play as a pair of legs in a platforming segment and a torso-hand combo trying to navigate a maze while your universes are disintegrating until you get back together. Make sure to help each other out, otherwise you won't make it in one piece.
+                    </p>
+                </div>
+                <div>
+                    <div class="flex flex-wrap gap-1.5 text-xs font-mono mb-3">
+                        <span class="badge px-2 py-0.5 rounded">c#</span>
+                        <span class="badge px-2 py-0.5 rounded">unity</span>
+                        <span class="badge px-2 py-0.5 rounded">gamepad</span>
+                    </div>
+                    <div class="flex gap-3 text-xs font-mono text-orange-400">
+                        <a href="https://globalgamejam.org/games/2024/body-aparts-9" target="_blank" class="hover:underline hover:text-orange-300">GGJ Page →</a>
+                        <a href="https://youtu.be/nedSk6gtM50" target="_blank" class="hover:underline hover:text-orange-300">Gameplay →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Solitaire -->
+            <div class="bg-card p-5 rounded-lg border border-subtle flex flex-col justify-between">
+                <div>
+                    <h3 class="text-base font-bold text-white mb-1">Solitaire WebGL</h3>
+                    <p class="text-xs text-gray-400 mb-3">Personal Project</p>
+                    <p class="text-sm text-gray-300 mb-4">Responsive WebGL card engine optimized for both desktop and mobile browsers.</p>
+                </div>
+                <div>
+                    <div class="flex flex-wrap gap-1.5 text-xs font-mono mb-3">
+                        <span class="badge px-2 py-0.5 rounded">unity</span>
+                        <span class="badge px-2 py-0.5 rounded">webgl</span>
+                        <span class="badge px-2 py-0.5 rounded">mobile-touch</span>
+                    </div>
+                    <a href="https://sydrox.itch.io/solitaire" target="_blank" class="text-xs font-mono text-orange-400 hover:underline hover:text-orange-300">Play in Browser →</a>
+                </div>
+            </div>
+
+            <!-- dev-layout -->
+            <div class="bg-card p-5 rounded-lg border border-subtle flex flex-col justify-between">
+                <div>
+                    <h3 class="text-base font-bold text-white mb-1">dev-layout</h3>
+                    <p class="text-xs text-gray-400 mb-3">Open Source Tool</p>
+                    <p class="text-sm text-gray-300 mb-4">Multi-repo workspace layout manager built for Claude Code developer workflows.</p>
+                </div>
+                <div>
+                    <div class="flex flex-wrap gap-1.5 text-xs font-mono mb-3">
+                        <span class="badge px-2 py-0.5 rounded">developer-tools</span>
+                        <span class="badge px-2 py-0.5 rounded">claude-code</span>
+                        <span class="badge px-2 py-0.5 rounded">git</span>
+                    </div>
+                    <a href="https://github.com/SyDroX/dev-layout" target="_blank" class="text-xs font-mono text-orange-400 hover:underline hover:text-orange-300">View Source on GitHub →</a>
+                </div>
+            </div>
+
+            <!-- Ormi -->
+            <div class="bg-card p-5 rounded-lg border border-subtle flex flex-col justify-between">
+                <div>
+                    <h3 class="text-base font-bold text-white mb-1">Ormi</h3>
+                    <p class="text-xs text-gray-400 mb-3">Mobile Android Game</p>
+                    <p class="text-sm text-gray-300 mb-4 leading-relaxed">
+                        Swipe to propel a ball from platform to platform and build momentum. Consecutive landings increase your speed and score, but also make the next platform harder to hit. Ormi is short for “ormikinesis.”
+                    </p>
+                </div>
+                <div>
+                    <div class="flex flex-wrap gap-1.5 text-xs font-mono mb-3">
+                        <span class="badge px-2 py-0.5 rounded">c#</span>
+                        <span class="badge px-2 py-0.5 rounded">unity</span>
+                        <span class="badge px-2 py-0.5 rounded">android</span>
+                        <span class="badge px-2 py-0.5 rounded">swipe-controls</span>
+                    </div>
+                    <a href="https://youtube.com/shorts/Hgt7yur5RKc" target="_blank" class="text-xs font-mono text-orange-400 hover:underline hover:text-orange-300">Watch Short →</a>
+                </div>
+            </div>
+
+            <!-- TreeFighter III -->
+            <div class="bg-card p-5 rounded-lg border border-subtle flex flex-col justify-between">
+                <div>
+                    <h3 class="text-base font-bold text-white mb-1">TreeFighter III</h3>
+                    <p class="text-xs text-gray-400 mb-3">Global Game Jam 2023</p>
+                    <p class="text-sm text-gray-300 mb-4">Arcade-style root warrior combat game created during GGJ 2023.</p>
+                </div>
+                <div>
+                    <div class="flex flex-wrap gap-1.5 text-xs font-mono mb-3">
+                        <span class="badge px-2 py-0.5 rounded">unity</span>
+                        <span class="badge px-2 py-0.5 rounded">c#</span>
+                        <span class="badge px-2 py-0.5 rounded">arcade</span>
+                    </div>
+                    <a href="https://v3.globalgamejam.org/2023/games/tree-fighter-iii-root-warrior-4" target="_blank" class="text-xs font-mono text-orange-400 hover:underline hover:text-orange-300">GGJ Entry →</a>
+                </div>
+            </div>
+
+            <!-- Dance Defense -->
+            <div class="bg-card p-5 rounded-lg border border-subtle flex flex-col justify-between">
+                <div>
+                    <h3 class="text-base font-bold text-white mb-1">Dance Defense</h3>
+                    <p class="text-xs text-gray-400 mb-3">Global Game Jam 2020 · 3rd place</p>
+                    <p class="text-sm text-gray-300 mb-4 leading-relaxed">
+                        Tower-defense game played with a dance pad. Tap the eight directions around you to repair your shield while defending against incoming attacks.
+                    </p>
+                </div>
+                <div>
+                    <div class="flex flex-wrap gap-1.5 text-xs font-mono mb-3">
+                        <span class="badge px-2 py-0.5 rounded">unity</span>
+                        <span class="badge px-2 py-0.5 rounded">c#</span>
+                        <span class="badge px-2 py-0.5 rounded">dance-pad</span>
+                        <span class="badge px-2 py-0.5 rounded">tower-defense</span>
+                    </div>
+                    <div class="flex gap-3 text-xs font-mono text-orange-400">
+                        <a href="https://www.mediafire.com/file/c8pgx4nzx3zioku/Dance_Defense.zip/file" target="_blank" class="hover:underline hover:text-orange-300">Download →</a>
+                        <a href="https://www.youtube.com/watch?v=gs5ZSMmxcWY&amp;feature=youtu.be" target="_blank" class="hover:underline hover:text-orange-300">Gameplay →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Take Over -->
+            <div class="bg-card p-5 rounded-lg border border-subtle flex flex-col justify-between">
+                <div>
+                    <h3 class="text-base font-bold text-white mb-1">Take Over</h3>
+                    <p class="text-xs text-gray-400 mb-3">Global Game Jam 2018</p>
+                    <p class="text-sm text-gray-300 mb-4 leading-relaxed">
+                        An alien that cannot survive Earth’s conditions takes control of electric toys. Starting in a baby’s room, you move between toys and fight off an endless toy army. I worked on development alongside Aviv Zvulun and Omri Goldberger.
+                    </p>
+                </div>
+                <div>
+                    <div class="flex flex-wrap gap-1.5 text-xs font-mono mb-3">
+                        <span class="badge px-2 py-0.5 rounded">unity</span>
+                        <span class="badge px-2 py-0.5 rounded">c#</span>
+                        <span class="badge px-2 py-0.5 rounded">game-jam</span>
+                    </div>
+                    <a href="https://lnf.itch.io/take-over" target="_blank" class="text-xs font-mono text-orange-400 hover:underline hover:text-orange-300">View on itch.io →</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-subtle pt-6 text-xs text-gray-500 font-mono flex justify-between">
+        <span>Kostya Sydoruk · 2026</span>
+        <a href="#top" class="hover:text-orange-400 transition-colors">Back to top ↑</a>
+    </footer>
+
+    <!-- Subtle Orange Matrix Rain Script -->
+    <script>
+        const canvas = document.getElementById('matrix-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        const chars = '0123456789ABCDEFABCDEFGHIJKLMNOPQRSTUVWXYZアァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
+        
+        // Scaled up font size for the matrix to match the 1.15x aesthetic
+        const fontSize = 16; 
+        let columns = Math.floor(canvas.width / fontSize);
+        let drops = Array(columns).fill(1);
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(13, 17, 23, 0.08)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#ea580c'; // Subtle orange matrix font color
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = chars.charAt(Math.floor(Math.random() * chars.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 40);
+    </script>
+</body>
+</html>
