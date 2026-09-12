@@ -443,6 +443,29 @@
             });
         });
 
+        // Track intentional hover/dwell over portfolio cards, once per card.
+        document.querySelectorAll('.bg-card').forEach((card) => {
+            let hoverTimer;
+            let hoverTracked = false;
+            const itemName = card.querySelector('h3')?.textContent.trim();
+
+            if (!itemName) return;
+
+            card.addEventListener('mouseenter', () => {
+                if (hoverTracked) return;
+                hoverTimer = setTimeout(() => {
+                    hoverTracked = true;
+                    gtag('event', 'item_hover', {
+                        item_name: itemName
+                    });
+                }, 1000);
+            });
+
+            card.addEventListener('mouseleave', () => {
+                clearTimeout(hoverTimer);
+            });
+        });
+
         // Track which major sections visitors actually view.
         const viewedSections = new Set();
         const sectionObserver = new IntersectionObserver((entries) => {
