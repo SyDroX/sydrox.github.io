@@ -116,9 +116,38 @@
             }
         }
 
+
+        /* Card layout: two columns only when both have room for useful previews. */
+        .portfolio-page { max-width: 1160px; }
+        .project-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; align-items: start; }
+        .project-card { padding: 24px; min-width: 0; border-radius: 12px; }
+        .project-copy { min-width: 0; }
+        .project-card .text-orange-400 { display: flex; flex-wrap: wrap; gap: 10px 16px; }
+        .project-card--wide { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 24px; align-items: start; }
+        .project-preview { flex: none; align-self: start; width: 100%; aspect-ratio: 16 / 9; }
+        .project-preview video { object-fit: contain; }
+        .landscape-preview { width: 100%; aspect-ratio: 16 / 9; margin-bottom: 20px; }
+        .landscape-preview, .portrait-preview { overflow: hidden; border-radius: 8px; background: #0d1117; border: 1px solid #30363d; }
+        .landscape-preview iframe, .portrait-preview iframe { display: block; width: 100%; height: 100%; border: 0; }
+        .project-card--portrait { display: grid; grid-template-columns: minmax(0, 1fr) 160px; gap: 20px; align-items: start; }
+        /* Set this ratio to 9 / 16 for a shorter portrait recording. */
+        .portrait-preview { width: 160px; aspect-ratio: 9 / 21; }
+        @media (min-width: 1000px) {
+            .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .project-card--wide { grid-column: 1 / -1; }
+        }
+        @media (max-width: 999px) {
+            .project-grid > .project-card { grid-column: auto; }
+        }
+        @media (max-width: 640px) {
+            .project-card { padding: 20px; }
+            .project-card--wide, .project-card--portrait { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+            .project-card--wide .project-preview, .portrait-preview { grid-row: 1; }
+            .portrait-preview { justify-self: center; width: min(100%, 160px); }
+        }
     </style>
 </head>
-<body class="max-w-4xl mx-auto px-4 py-7 sm:px-6 sm:py-12">
+<body class="portfolio-page max-w-4xl mx-auto px-4 py-7 sm:px-6 sm:py-12">
 
     <!-- Matrix Animation Canvas -->
     <canvas id="matrix-canvas"></canvas>
@@ -272,10 +301,10 @@
     <section class="mb-10 sm:mb-14" data-analytics-section="independent-projects-and-game-jams">
         <h2 class="text-lg sm:text-xl font-semibold text-white mb-5 sm:mb-6 border-b border-subtle pb-2 leading-snug">Independent Projects & Game Jams</h2>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="project-grid grid grid-cols-1 md:grid-cols-2 gap-6">
 
             <!-- Untitled Project -->
-            <div class="bg-card p-5 rounded-lg border border-subtle flex flex-col justify-between">
+            <div class="bg-card p-5 rounded-lg border border-subtle project-card flex flex-col">
                 <div>
                     <h3 class="text-base font-bold text-white mb-1">Untitled Project</h3>
                     <p class="text-xs text-gray-400 mb-3">PC - Very early work in progress</p>
@@ -294,7 +323,8 @@
             </div>
 
             <!-- Ormi -->
-            <div class="bg-card p-5 rounded-lg border border-subtle flex flex-col justify-between">
+            <div class="bg-card p-5 rounded-lg border border-subtle project-card project-card--portrait flex flex-col">
+                <div class="project-copy">
                 <div>
                     <h3 class="text-base font-bold text-white mb-1">Ormi</h3>
                     <p class="text-xs text-gray-400 mb-3">Mobile Android Game</p>
@@ -313,10 +343,12 @@
                         <a href="https://youtube.com/shorts/Hgt7yur5RKc" target="_blank" class="hover:underline hover:text-orange-300">Watch Demo →</a>
                     </div>
                 </div>
+                </div>
+                <div class="portrait-preview"><iframe src="https://www.youtube-nocookie.com/embed/Hgt7yur5RKc" title="Ormi gameplay demo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
             </div>
 
             <!-- Mask Of The Queen -->
-            <div class="bg-card p-5 rounded-lg border border-subtle flex flex-col justify-between">
+            <div class="bg-card p-5 rounded-lg border border-subtle project-card flex flex-col">
                 <div>
                     <h3 class="text-base font-bold text-white mb-1">Mask Of The Queen</h3>
                     <p class="text-xs text-gray-400 mb-3">Global Game Jam 2026</p>
@@ -335,20 +367,11 @@
             </div>
 
             <!-- Agentic CLI Toolkit -->
-            <div class="bg-card p-5 rounded-lg border border-subtle flex flex-col justify-between md:col-span-2" data-hover-preview>
-                <div class="flex flex-col sm:flex-row gap-5 items-start">
-                    <div class="min-w-0 flex-1">
+            <div class="bg-card rounded-lg border border-subtle project-card project-card--wide" data-hover-preview>
+                <div class="project-copy">
                         <h3 class="text-base font-bold text-white mb-1">Agentic CLI Toolkit</h3>
                         <p class="text-xs text-gray-400 mb-3">Open Source Developer Tool</p>
                         <p class="text-sm text-gray-300 mb-4 leading-relaxed">A Windows Terminal workspace launcher for AI-assisted development. It opens a focused two-window workspace with multi-tab sessions and automatic window snapping, so projects are ready to work in immediately.</p>
-                    </div>
-                    <div class="project-preview" tabindex="0" aria-label="Agentic CLI Toolkit demo. Hover, focus, or click to play.">
-                        <video muted loop playsinline preload="metadata" poster="assets/agentic-cli-toolkit-demo.png" aria-label="Agentic CLI Toolkit demo video">
-                            <source src="assets/agentic-cli-toolkit-demo.mp4" type="video/mp4">
-                        </video>
-                    </div>
-                </div>
-                <div class="mt-4">
                     <div class="flex flex-wrap gap-1.5 text-xs font-mono mb-3">
                         <span class="badge px-2 py-0.5 rounded">windows-terminal</span>
                         <span class="badge px-2 py-0.5 rounded">developer-tools</span>
@@ -356,10 +379,16 @@
                     </div>
                     <a href="https://github.com/SyDroX/agentic-cli-toolkit" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-orange-400 hover:underline hover:text-orange-300">View Source on GitHub →</a>
                 </div>
+                    <div class="project-preview" tabindex="0" aria-label="Agentic CLI Toolkit demo. Hover, focus, or click to play.">
+                        <video muted loop playsinline preload="metadata" poster="assets/agentic-cli-toolkit-demo.png" aria-label="Agentic CLI Toolkit demo video">
+                            <source src="assets/agentic-cli-toolkit-demo.mp4" type="video/mp4">
+                        </video>
+                    </div>
             </div>
 
             <!-- Body Aparts -->
-            <div class="bg-card p-5 rounded-lg border border-subtle flex flex-col justify-between">
+            <div class="bg-card p-5 rounded-lg border border-subtle project-card flex flex-col">
+                <div class="landscape-preview"><iframe src="https://www.youtube-nocookie.com/embed/nedSk6gtM50" title="Body Aparts gameplay demo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
                 <div>
                     <h3 class="text-base font-bold text-white mb-1">Body Aparts</h3>
                     <p class="text-xs text-gray-400 mb-3">Global Game Jam 2024</p>
@@ -380,7 +409,7 @@
             </div>
 
             <!-- TreeFighter III -->
-            <div class="bg-card p-5 rounded-lg border border-subtle flex flex-col justify-between">
+            <div class="bg-card p-5 rounded-lg border border-subtle project-card flex flex-col">
                 <div>
                     <h3 class="text-base font-bold text-white mb-1">TreeFighter III</h3>
                     <p class="text-xs text-gray-400 mb-3">Global Game Jam 2023</p>
@@ -396,7 +425,8 @@
             </div>
 
             <!-- Dance Defense -->
-            <div class="bg-card p-5 rounded-lg border border-subtle flex flex-col justify-between">
+            <div class="bg-card p-5 rounded-lg border border-subtle project-card flex flex-col">
+                <div class="landscape-preview"><iframe src="https://www.youtube-nocookie.com/embed/gs5ZSMmxcWY" title="Dance Defense gameplay demo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
                 <div>
                     <h3 class="text-base font-bold text-white mb-1">Dance Defense</h3>
                     <p class="text-xs text-gray-400 mb-3">Global Game Jam 2020 · 3rd place</p>
@@ -417,7 +447,7 @@
             </div>
 
             <!-- Take Over -->
-            <div class="bg-card p-5 rounded-lg border border-subtle flex flex-col justify-between">
+            <div class="bg-card p-5 rounded-lg border border-subtle project-card flex flex-col">
                 <div>
                     <h3 class="text-base font-bold text-white mb-1">Take Over</h3>
                     <p class="text-xs text-gray-400 mb-3">Global Game Jam 2018</p>
@@ -436,7 +466,7 @@
             </div>
 
             <!-- Solitaire -->
-            <div class="bg-card p-5 rounded-lg border border-subtle flex flex-col justify-between">
+            <div class="bg-card p-5 rounded-lg border border-subtle project-card flex flex-col">
                 <div>
                     <h3 class="text-base font-bold text-white mb-1">Solitaire WebGL</h3>
                     <p class="text-xs text-gray-400 mb-3">Personal Project</p>
