@@ -117,34 +117,70 @@
         }
 
 
-        /* Card layout: two columns only when both have room for useful previews. */
+        /* Shared sizing across both portfolio sections. */
         .portfolio-page { max-width: 1160px; }
-        .project-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; align-items: start; }
-        .project-card { padding: 24px; min-width: 0; border-radius: 12px; }
-        .project-copy { min-width: 0; }
-        .project-card .text-orange-400 { display: flex; flex-wrap: wrap; gap: 10px 16px; }
-        .project-card--wide { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 24px; align-items: start; }
-        .project-preview { flex: none; align-self: start; width: 100%; aspect-ratio: 16 / 9; }
-        .project-preview video { object-fit: contain; }
-        .landscape-preview { width: 100%; aspect-ratio: 16 / 9; margin-bottom: 20px; }
-        .landscape-preview, .portrait-preview { overflow: hidden; border-radius: 8px; background: #0d1117; border: 1px solid #30363d; }
-        .landscape-preview iframe, .portrait-preview iframe { display: block; width: 100%; height: 100%; border: 0; }
-        .project-card--portrait { display: grid; grid-template-columns: minmax(0, 1fr) 160px; gap: 20px; align-items: start; }
-        /* Set this ratio to 9 / 16 for a shorter portrait recording. */
-        .portrait-preview { width: 160px; aspect-ratio: 9 / 21; }
-        @media (min-width: 1000px) {
-            .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-            .project-card--wide { grid-column: 1 / -1; }
+        .systems-grid, .project-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; align-items: start; }
+        .uniform-card { box-sizing: border-box; padding: 24px; min-width: 0; border-radius: 12px; display: flex; flex-direction: column; }
+        .card-content { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+        .card-heading { margin-bottom: 16px; }
+        .card-heading h3 { font-size: 18px; line-height: 1.4; margin: 0 0 6px; }
+        .card-heading > p, .card-heading > span { display: block; font-size: 12px; line-height: 1.6; margin: 0; }
+        .card-content > p { font-size: 14px; line-height: 1.65; margin: 0 0 20px; }
+        .card-footer { margin-top: auto; }
+        .card-tags, .card-links { display: flex; flex-wrap: wrap; gap: 8px; }
+        .card-links { gap: 10px 16px; margin-top: 16px; }
+        .card-tags .badge { padding: 4px 10px; border-radius: 4px; }
+        .card-media { padding-bottom: 20px; }
+        .card-media > .landscape-preview, .card-media > .portrait-preview, .card-media > .project-preview { margin-bottom: 48px; }
+        .landscape-preview, .portrait-preview, .system-video, .uniform-card .project-preview {
+            width: 100%; height: auto; aspect-ratio: 16 / 9; display: flex; justify-content: center;
+            flex: none; align-self: auto; overflow: hidden; border: 1px solid #30363d; border-radius: 8px; background: #0d1117;
         }
-        @media (max-width: 999px) {
-            .project-grid > .project-card { grid-column: auto; }
+        .card-media iframe, .card-media video { display: block; width: 100%; height: 100%; border: 0; object-fit: contain; }
+        .portrait-preview iframe, .system-video.is-portrait iframe { width: 31.640625%; height: 100%; }
+        .demo-switcher { display: flex; gap: 8px; height: 48px; align-items: end; }
+        .demo-switcher button { font: inherit; font-size: 12px; color: #9ca3af; padding: 7px 10px; border: 1px solid #30363d; border-radius: 6px; background: #161b22; cursor: pointer; }
+        .demo-switcher button[aria-pressed="true"] { color: #fb923c; border-color: #9a4b20; background: #2c211b; }
+        .demo-switcher button:focus-visible { outline: 2px solid #fb923c; outline-offset: 3px; }
+        @media (max-width: 767px) {
+            .systems-grid, .project-grid { grid-template-columns: minmax(0, 1fr); }
+            .uniform-card { padding: 20px; }
         }
-        @media (max-width: 640px) {
-            .project-card { padding: 20px; }
-            .project-card--wide, .project-card--portrait { grid-template-columns: minmax(0, 1fr); gap: 20px; }
-            .project-card--wide .project-preview, .portrait-preview { grid-row: 1; }
-            .portrait-preview { justify-self: center; width: min(100%, 160px); }
+        /* Three card types, each with its own natural media proportions. */
+        .card-media { display: block; padding-bottom: 20px; }
+        .system-media { display: block; }
+        .card-media > .landscape-preview, .card-media > .portrait-preview, .card-media > .project-preview { margin: 0; }
+        .landscape-preview, .portrait-preview, .system-video, .uniform-card .project-preview {
+            position: relative; box-sizing: border-box; width: 100%; height: auto;
         }
+        .portrait-preview, .system-video.is-portrait { width: 100%; height: auto; aspect-ratio: 9 / 16; }
+        .card-media iframe, .card-media video { position: absolute; inset: 0; width: 100%; height: 100%; }
+        .portrait-preview iframe, .system-video.is-portrait iframe { width: 100%; height: 100%; }
+        .card-media iframe[hidden] { display: none; }
+        .demo-switcher { height: auto; padding-top: 12px; flex-wrap: wrap; align-items: center; }
+        .video-load { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; padding: 0; cursor: pointer; background: #0d1117; color: white; }
+        .video-load img { width: 100%; height: 100%; object-fit: cover; opacity: .65; }
+        .video-load span { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); white-space: nowrap; background: #161b22; border: 1px solid #fb923c; border-radius: 8px; padding: 10px 14px; font-size: 13px; }
+        .video-load:focus-visible { outline: 3px solid #fb923c; outline-offset: -3px; }
+        /* Content-sized cards with independently packed desktop columns. */
+        .uniform-card { min-height: 0; height: auto; align-self: start; }
+        .card-content { flex: none; }
+        .card-footer { margin-top: 0; }
+        .portrait-preview, .system-video.is-portrait { width: 100%; margin-left: auto; margin-right: auto; }
+        .card-media > .portrait-preview { margin-left: auto; margin-right: auto; }
+        @media (min-width: 768px) {
+            .systems-grid.masonry-ready, .project-grid.masonry-ready { grid-auto-rows: 1px; row-gap: 0; }
+        }
+        /* 9:16 source cropped to 3:4, with per-project crop placement. */
+        .portrait-preview, .system-video.is-portrait { aspect-ratio: 3 / 4; }
+        .portrait-preview iframe, .system-video.is-portrait iframe {
+            width: 100%; height: 133.333333%; top: -16.666667%; bottom: auto;
+        }
+        .system-video.crop-product iframe { top: -22.222222%; }
+        .portrait-preview--ormi iframe { top: -26.666667%; }
+        .system-video.is-portrait .video-load img { object-position: center 50%; }
+        .system-video.crop-product .video-load img { object-position: center 66.666667%; }
+        .portrait-preview--ormi .video-load img { object-position: center 80%; }
     </style>
 </head>
 <body class="portfolio-page max-w-4xl mx-auto px-4 py-7 sm:px-6 sm:py-12">
@@ -155,7 +191,7 @@
     <!-- Header Section -->
     <header class="mb-10 sm:mb-12 border-b border-subtle pb-6 sm:pb-8" data-analytics-section="header">
         <h1 class="text-3xl font-bold text-white mb-2 leading-tight">Kostya Sydoruk</h1>
-        <p class="text-base sm:text-lg text-orange-400 font-medium mb-4 leading-snug">Lead Software Engineer | C# & Unity Specialist</p>
+        <p class="text-base sm:text-lg text-orange-400 font-medium mb-4 leading-snug">Lead Software Engineer | C# &amp; Unity Specialist</p>
         <p class="text-sm text-gray-300 max-w-2xl leading-relaxed mb-6">
             Software engineer with over 12 years of experience across industrial automation, healthcare, VR simulation, and games. I work mainly with C#, Unity, .NET, hardware integrations, and computer vision.
         </p>
@@ -170,21 +206,24 @@
 
     <!-- Professional Experience & Major Projects -->
     <section class="mb-10 sm:mb-14" data-analytics-section="products-and-systems">
-        <h2 class="text-lg sm:text-xl font-semibold text-white mb-5 sm:mb-6 border-b border-subtle pb-2 leading-snug">Products & Systems</h2>
+        <h2 class="text-lg sm:text-xl font-semibold text-white mb-5 sm:mb-6 border-b border-subtle pb-2 leading-snug">Products &amp; Systems</h2>
         
-        <div class="space-y-8">
+        <div class="systems-grid">
 
             <!-- SkillReal -->
-            <div class="bg-card p-6 rounded-lg border border-subtle">
-                <div class="flex justify-between items-start mb-2">
-                    <h3 class="text-lg font-bold text-white">DTA Automated Inspection System</h3>
-                    <span class="text-xs font-mono text-gray-400">Lead Engineer @ SkillReal (2025–Present)</span>
-                </div>
-                <p class="text-sm text-gray-300 mb-4 leading-relaxed">
+            <div class="bg-card border border-subtle uniform-card uniform-card--video uniform-card--landscape">
+                <div class="card-media"><div class="landscape-preview">
+                    <iframe title="SkillReal — Product Demo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen data-src="https://www.youtube-nocookie.com/embed/8j-wxSrviU4" hidden="hidden"></iframe>
+                <button type="button" class="video-load" aria-label="Play SkillReal — Product Demo"><img src="https://i.ytimg.com/vi/8j-wxSrviU4/hqdefault.jpg" alt="" loading="lazy"><span>▶ Play video</span></button></div>
+                </div><div class="card-content"><div class="card-heading"><h3 class="text-lg font-bold text-white">DTA Automated Inspection System</h3>
+                    <p class="text-xs font-mono text-gray-400 leading-relaxed">
+                        <span class="block">Lead Software Engineer</span>
+                        <span class="block">@ SkillReal (2025–Present)</span>
+                    </p>
+                </div><p class="text-sm text-gray-300 mb-4 leading-relaxed">
                     An inference-based quality inspection system installed at the end of an automotive production line. Cameras capture each part from multiple angles and, when needed, across several stages. The system compares those captures with a master backed by a 3D CAD model, checks configured features such as welds, seams, and pores, and returns a pass/fail result to the factory line.
                 </p>
-                <div class="flex flex-wrap gap-2 text-xs font-mono">
-                    <span class="badge px-2.5 py-1 rounded">c#</span>
+                <div class="card-footer"><div class="card-tags text-xs font-mono"><span class="badge px-2.5 py-1 rounded">c#</span>
                     <span class="badge px-2.5 py-1 rounded">unity</span>
                     <span class="badge px-2.5 py-1 rounded">python</span>
                     <span class="badge px-2.5 py-1 rounded">mongodb</span>
@@ -193,20 +232,23 @@
                     <span class="badge px-2.5 py-1 rounded">industrial-automation</span>
                     <span class="badge px-2.5 py-1 rounded">ci/cd</span>
                     <span class="badge px-2.5 py-1 rounded">observability</span>
-                </div>
-            </div>
+                </div></div></div></div>
 
             <!-- GaitBetter -->
-            <div class="bg-card p-6 rounded-lg border border-subtle">
-                <div class="flex justify-between items-start mb-2">
-                    <h3 class="text-lg font-bold text-white">GaitBetter Rehabilitation Platform</h3>
-                    <span class="text-xs font-mono text-gray-400">Senior Engineer @ GaitBetter (2022–2024)</span>
+            <div class="bg-card border border-subtle uniform-card uniform-card--video uniform-card--portrait">
+                <div class="card-media"><div class="system-media" data-demo-gallery>
+                    <div class="system-video is-portrait crop-product"><iframe title="GaitBetter Rehabilitation Platform — Product Demo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen data-src="https://www.youtube-nocookie.com/embed/p-ZyW23O-6U" hidden="hidden"></iframe><button type="button" class="video-load" aria-label="Play GaitBetter Rehabilitation Platform — Product Demo"><img src="https://i.ytimg.com/vi/p-ZyW23O-6U/hqdefault.jpg" alt="" loading="lazy"><span>▶ Play video</span></button></div>
+                    <div class="demo-switcher" role="group" aria-label="Choose GaitBetter Rehabilitation Platform video">
+                        <button type="button" data-demo-id="p-ZyW23O-6U" data-demo-portrait="true" data-demo-title="GaitBetter Rehabilitation Platform — Product Demo" aria-pressed="true">Product Demo</button>
+                        <button type="button" data-demo-id="wN-bFhF7riQ" data-demo-portrait="true" data-demo-title="GaitBetter Rehabilitation Platform — Rehab Demo" aria-pressed="false">Rehab Demo</button>
+                    </div>
                 </div>
-                <p class="text-sm text-gray-300 mb-4 leading-relaxed">
+            </div><div class="card-content"><div class="card-heading"><h3 class="text-lg font-bold text-white">GaitBetter Rehabilitation Platform</h3>
+                    <span class="text-xs font-mono text-gray-400">Senior Engineer @ GaitBetter (2022–2024)</span>
+                </div><p class="text-sm text-gray-300 mb-4 leading-relaxed">
                     A physiotherapy system for older adults and people with conditions such as Parkinson’s disease. A low-end computer, TV, Intel RealSense camera, and two physical buttons are mounted to a treadmill. Patients move through engaging, gamified cognitive scenarios while walking, combining physical movement with decision-making tasks to improve their motor-cognitive reserve.
                 </p>
-                <div class="flex flex-wrap gap-2 text-xs font-mono mb-4">
-                    <span class="badge px-2.5 py-1 rounded">c#</span>
+                <div class="card-footer"><div class="card-tags text-xs font-mono"><span class="badge px-2.5 py-1 rounded">c#</span>
                     <span class="badge px-2.5 py-1 rounded">unity</span>
                     <span class="badge px-2.5 py-1 rounded">.net core</span>
                     <span class="badge px-2.5 py-1 rounded">distributed-systems</span>
@@ -214,272 +256,161 @@
                     <span class="badge px-2.5 py-1 rounded">computer-vision</span>
                     <span class="badge px-2.5 py-1 rounded">hardware-integration</span>
                     <span class="badge px-2.5 py-1 rounded">rest-api</span>
-                </div>
-                <div class="flex gap-4 text-xs font-mono text-orange-400">
-                    <a href="https://youtu.be/p-ZyW23O-6U" target="_blank" class="hover:underline hover:text-orange-300">Watch Demo →</a>
-                    <a href="https://youtube.com/shorts/wN-bFhF7riQ?feature=share" target="_blank" class="hover:underline hover:text-orange-300">Watch Demo →</a>
-                </div>
-            </div>
+                </div><div class="card-links text-xs font-mono text-orange-400"><a href="https://youtu.be/p-ZyW23O-6U" target="_blank" class="hover:underline hover:text-orange-300">Product Demo →</a>
+                    <a href="https://youtube.com/shorts/wN-bFhF7riQ?feature=share" target="_blank" class="hover:underline hover:text-orange-300">Rehab Demo →</a>
+                </div></div></div></div>
 
-            <!-- Intuitive Surgical -->
-            <div class="bg-card p-6 rounded-lg border border-subtle">
-                <div class="flex justify-between items-start mb-2">
-                    <h3 class="text-lg font-bold text-white">Surgical Scene Research</h3>
-                    <span class="text-xs font-mono text-gray-400">Synthetic Data Engineer @ Intuitive Surgical (2022)</span>
-                </div>
-                <p class="text-sm text-gray-300 mb-4 leading-relaxed">
-                    Research work connected to the da Vinci surgical system. The project explored reconstructing a patient’s colon as a 3D scene from surgery video and annotating points of interest and surgical actions. The longer-term goal was a model capable of recognizing and presenting that information during surgery.
-                </p>
-                <div class="flex flex-wrap gap-2 text-xs font-mono">
-                    <span class="badge px-2.5 py-1 rounded">unity</span>
-                    <span class="badge px-2.5 py-1 rounded">unreal-engine</span>
-                    <span class="badge px-2.5 py-1 rounded">python</span>
-                    <span class="badge px-2.5 py-1 rounded">computer-vision</span>
-                </div>
-            </div>
-
+            
             <!-- Simbionix VR -->
-            <div class="bg-card p-6 rounded-lg border border-subtle">
-                <div class="flex justify-between items-start mb-2">
-                    <h3 class="text-lg font-bold text-white">VR Training Simulators</h3>
-                    <span class="text-xs font-mono text-gray-400">VR Software Engineer @ 3D Systems (2019–2021)</span>
+            <div class="bg-card border border-subtle uniform-card uniform-card--video uniform-card--landscape">
+                <div class="card-media"><div class="system-media" data-demo-gallery>
+                    <div class="system-video"><iframe title="VR Training Simulators — Demo 1" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen data-src="https://www.youtube-nocookie.com/embed/6w0lbcc4y1o" hidden="hidden"></iframe><button type="button" class="video-load" aria-label="Play VR Training Simulators — Demo 1"><img src="https://i.ytimg.com/vi/6w0lbcc4y1o/hqdefault.jpg" alt="" loading="lazy"><span>▶ Play video</span></button></div>
+                    <div class="demo-switcher" role="group" aria-label="Choose VR Training Simulators video">
+                        <button type="button" data-demo-id="6w0lbcc4y1o" data-demo-portrait="false" data-demo-title="VR Training Simulators — Demo 1" aria-pressed="true">Demo 1</button>
+                        <button type="button" data-demo-id="ZTjvy0G3Q5M" data-demo-portrait="false" data-demo-title="VR Training Simulators — Demo 2" aria-pressed="false">Demo 2</button>
+                    </div>
                 </div>
-                <p class="text-sm text-gray-300 mb-4 leading-relaxed">
+            </div><div class="card-content"><div class="card-heading"><h3 class="text-lg font-bold text-white">VR Training Simulators</h3>
+                    <span class="text-xs font-mono text-gray-400">VR Software Engineer @ 3D Systems (2019–2021)</span>
+                </div><p class="text-sm text-gray-300 mb-4 leading-relaxed">
                     Training products built around bringing physical equipment into VR with accurate tracking. The combat simulator supports one-to-four-player missions using wireless HTC Vive Pro backpacks and tracked M4 training rifles with working trigger and magazine inputs. Trauma VR uses a tracked medical mannequin so trainees can assess an unconscious patient, clear an airway, check vital signs, and practise procedures with physical tools.
                 </p>
-                <div class="flex flex-wrap gap-2 text-xs font-mono mb-4">
-                    <span class="badge px-2.5 py-1 rounded">c#</span>
+                <div class="card-footer"><div class="card-tags text-xs font-mono"><span class="badge px-2.5 py-1 rounded">c#</span>
                     <span class="badge px-2.5 py-1 rounded">unity</span>
                     <span class="badge px-2.5 py-1 rounded">vr</span>
                     <span class="badge px-2.5 py-1 rounded">motion-tracking</span>
                     <span class="badge px-2.5 py-1 rounded">hardware-integration</span>
                     <span class="badge px-2.5 py-1 rounded">networking</span>
-                </div>
-                <div class="flex gap-4 text-xs font-mono text-orange-400">
-                    <a href="https://youtu.be/6w0lbcc4y1o" target="_blank" class="hover:underline hover:text-orange-300">Watch Demo →</a>
+                </div><div class="card-links text-xs font-mono text-orange-400"><a href="https://youtu.be/6w0lbcc4y1o" target="_blank" class="hover:underline hover:text-orange-300">Watch Demo →</a>
                     <a href="https://youtu.be/ZTjvy0G3Q5M" target="_blank" class="hover:underline hover:text-orange-300">Watch Demo →</a>
-                </div>
-            </div>
-
-            <!-- Israeli Air Force - Ofek (Team Lead) -->
-            <div class="bg-card p-6 rounded-lg border border-subtle">
-                <div class="flex justify-between items-start mb-2">
-                    <h3 class="text-lg font-bold text-white">Inventory Management System</h3>
-                    <span class="text-xs font-mono text-gray-400">Team Lead & Senior Full Stack @ Israeli Air Force – Ofek (2015–2018)</span>
-                </div>
-                <p class="text-sm text-gray-300 mb-4 leading-relaxed">
-                    A large-scale internal, web-based inventory management system used in a military environment.
-                </p>
-                <div class="flex flex-wrap gap-2 text-xs font-mono">
-                    <span class="badge px-2.5 py-1 rounded">c#</span>
-                    <span class="badge px-2.5 py-1 rounded">asp.net</span>
-                    <span class="badge px-2.5 py-1 rounded">oracle</span>
-                    <span class="badge px-2.5 py-1 rounded">team-leadership</span>
-                </div>
-            </div>
-
-            <!-- Israeli Air Force - Ofek (Developer) -->
-            <div class="bg-card p-6 rounded-lg border border-subtle">
-                <div class="flex justify-between items-start mb-2">
-                    <h3 class="text-lg font-bold text-white">Inventory Management System</h3>
-                    <span class="text-xs font-mono text-gray-400">Full Stack Developer @ Israeli Air Force – Ofek (2012–2015)</span>
-                </div>
-                <p class="text-sm text-gray-300 mb-4 leading-relaxed">
-                    A large-scale internal, web-based inventory management system used in a military environment.
-                </p>
-                <div class="flex flex-wrap gap-2 text-xs font-mono">
-                    <span class="badge px-2.5 py-1 rounded">c#</span>
-                    <span class="badge px-2.5 py-1 rounded">.net</span>
-                    <span class="badge px-2.5 py-1 rounded">oracle</span>
-                </div>
-            </div>
+                </div></div></div></div>
 
         </div>
     </section>
 
     <!-- Independent Projects & Game Jams -->
     <section class="mb-10 sm:mb-14" data-analytics-section="independent-projects-and-game-jams">
-        <h2 class="text-lg sm:text-xl font-semibold text-white mb-5 sm:mb-6 border-b border-subtle pb-2 leading-snug">Independent Projects & Game Jams</h2>
+        <h2 class="text-lg sm:text-xl font-semibold text-white mb-5 sm:mb-6 border-b border-subtle pb-2 leading-snug">Independent Projects &amp; Game Jams</h2>
         
         <div class="project-grid grid grid-cols-1 md:grid-cols-2 gap-6">
 
             <!-- Untitled Project -->
-            <div class="bg-card p-5 rounded-lg border border-subtle project-card flex flex-col">
-                <div>
-                    <h3 class="text-base font-bold text-white mb-1">Untitled Project</h3>
+            <div class="bg-card border border-subtle uniform-card uniform-card--compact">
+                <div class="card-content"><div class="card-heading"><h3 class="text-base font-bold text-white mb-1">Untitled Project</h3>
                     <p class="text-xs text-gray-400 mb-3">PC - Very early work in progress</p>
-                    <p class="text-sm text-gray-300 mb-4 leading-relaxed">
+                    </div><p class="text-sm text-gray-300 mb-4 leading-relaxed">
                         Survivor-style roguelike with manually cast skills, skill trees, and elemental effects that interact with one another.
                     </p>
-                </div>
-                <div>
-                    <div class="flex flex-wrap gap-1.5 text-xs font-mono mb-3">
-                        <span class="badge px-2 py-0.5 rounded">unity</span>
+                <div class="card-footer"><div class="card-tags text-xs font-mono"><span class="badge px-2 py-0.5 rounded">unity</span>
                         <span class="badge px-2 py-0.5 rounded">c#</span>
                         <span class="badge px-2 py-0.5 rounded">roguelike</span>
-                    </div>
-                    <a href="https://sydrox.itch.io/potatosandwiched" target="_blank" class="text-xs font-mono text-orange-400 hover:underline hover:text-orange-300">Play in Browser →</a>
-                </div>
-            </div>
-
-            <!-- Ormi -->
-            <div class="bg-card p-5 rounded-lg border border-subtle project-card project-card--portrait flex flex-col">
-                <div class="project-copy">
-                <div>
-                    <h3 class="text-base font-bold text-white mb-1">Ormi</h3>
-                    <p class="text-xs text-gray-400 mb-3">Mobile Android Game</p>
-                    <p class="text-sm text-gray-300 mb-4 leading-relaxed">
-                        Swipe to propel a ball from platform to platform and build momentum. Consecutive landings increase your speed and score, but also make the next platform harder to hit. Ormi is short for “ormikinesis”—momentum in Latin.
-                    </p>
-                </div>
-                <div>
-                    <div class="flex flex-wrap gap-1.5 text-xs font-mono mb-3">
-                        <span class="badge px-2 py-0.5 rounded">c#</span>
-                        <span class="badge px-2 py-0.5 rounded">unity</span>
-                        <span class="badge px-2 py-0.5 rounded">android</span>
-                    </div>
-                    <div class="flex gap-3 text-xs font-mono text-orange-400">
-                        <a href="https://www.mediafire.com/file/2cuujenfjrc3ecz/Ormi.29.12.2024.apk/file" target="_blank" class="hover:underline hover:text-orange-300">Download APK →</a>
-                        <a href="https://youtube.com/shorts/Hgt7yur5RKc" target="_blank" class="hover:underline hover:text-orange-300">Watch Demo →</a>
-                    </div>
-                </div>
-                </div>
-                <div class="portrait-preview"><iframe src="https://www.youtube-nocookie.com/embed/Hgt7yur5RKc" title="Ormi gameplay demo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
-            </div>
+                    </div><div class="card-links text-xs font-mono text-orange-400"><a href="https://sydrox.itch.io/potatosandwiched" target="_blank" class="text-xs font-mono text-orange-400 hover:underline hover:text-orange-300">Play in Browser →</a>
+                </div></div></div></div>
 
             <!-- Mask Of The Queen -->
-            <div class="bg-card p-5 rounded-lg border border-subtle project-card flex flex-col">
-                <div>
-                    <h3 class="text-base font-bold text-white mb-1">Mask Of The Queen</h3>
+            <div class="bg-card border border-subtle uniform-card uniform-card--compact">
+                <div class="card-content"><div class="card-heading"><h3 class="text-base font-bold text-white mb-1">Mask Of The Queen</h3>
                     <p class="text-xs text-gray-400 mb-3">Global Game Jam 2026</p>
-                    <p class="text-sm text-gray-300 mb-4 leading-relaxed">
+                    </div><p class="text-sm text-gray-300 mb-4 leading-relaxed">
                         Action game about surviving in a hive by taking masks from enemies. Each mask gives you an identity for a limited time while you work toward defeating the Queen.
                     </p>
-                </div>
-                <div>
-                    <div class="flex flex-wrap gap-1.5 text-xs font-mono mb-3">
-                        <span class="badge px-2 py-0.5 rounded">c#</span>
+                <div class="card-footer"><div class="card-tags text-xs font-mono"><span class="badge px-2 py-0.5 rounded">c#</span>
                         <span class="badge px-2 py-0.5 rounded">unity</span>
                         <span class="badge px-2 py-0.5 rounded">webgl</span>
-                    </div>
-                    <a href="https://sydrox.itch.io/mask-of-the-queen" target="_blank" class="text-xs font-mono text-orange-400 hover:underline hover:text-orange-300">Play in Browser →</a>
-                </div>
-            </div>
+                    </div><div class="card-links text-xs font-mono text-orange-400"><a href="https://sydrox.itch.io/mask-of-the-queen" target="_blank" class="text-xs font-mono text-orange-400 hover:underline hover:text-orange-300">Play in Browser →</a>
+                </div></div></div></div>
+
+            <!-- Ormi -->
+            <div class="bg-card border border-subtle uniform-card uniform-card--video uniform-card--portrait">
+                <div class="card-media"><div class="portrait-preview portrait-preview--ormi"><iframe title="Ormi gameplay demo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen data-src="https://www.youtube-nocookie.com/embed/Hgt7yur5RKc" hidden="hidden"></iframe><button type="button" class="video-load" aria-label="Play Ormi gameplay demo"><img src="https://i.ytimg.com/vi/Hgt7yur5RKc/hqdefault.jpg" alt="" loading="lazy"><span>▶ Play video</span></button></div>
+            </div><div class="card-content"><div class="card-heading"><h3 class="text-base font-bold text-white mb-1">Ormi</h3>
+                    <p class="text-xs text-gray-400 mb-3">Mobile Android Game</p>
+                    </div><p class="text-sm text-gray-300 mb-4 leading-relaxed">
+                        Swipe to propel a ball from platform to platform and build momentum. Consecutive landings increase your speed and score, but also make the next platform harder to hit. Ormi is short for “ormikinesis”—momentum in Latin.
+                    </p>
+                <div class="card-footer"><div class="card-tags text-xs font-mono"><span class="badge px-2 py-0.5 rounded">c#</span>
+                        <span class="badge px-2 py-0.5 rounded">unity</span>
+                        <span class="badge px-2 py-0.5 rounded">android</span>
+                    </div><div class="card-links text-xs font-mono text-orange-400"><a href="https://www.mediafire.com/file/2cuujenfjrc3ecz/Ormi.29.12.2024.apk/file" target="_blank" class="hover:underline hover:text-orange-300">Download APK →</a>
+                        <a href="https://youtube.com/shorts/Hgt7yur5RKc" target="_blank" class="hover:underline hover:text-orange-300">Watch Demo →</a>
+                    </div></div></div></div>
 
             <!-- Agentic CLI Toolkit -->
-            <div class="bg-card rounded-lg border border-subtle project-card project-card--wide" data-hover-preview>
-                <div class="project-copy">
-                        <h3 class="text-base font-bold text-white mb-1">Agentic CLI Toolkit</h3>
-                        <p class="text-xs text-gray-400 mb-3">Open Source Developer Tool</p>
-                        <p class="text-sm text-gray-300 mb-4 leading-relaxed">A Windows Terminal workspace launcher for AI-assisted development. It opens a focused two-window workspace with multi-tab sessions and automatic window snapping, so projects are ready to work in immediately.</p>
-                    <div class="flex flex-wrap gap-1.5 text-xs font-mono mb-3">
-                        <span class="badge px-2 py-0.5 rounded">windows-terminal</span>
-                        <span class="badge px-2 py-0.5 rounded">developer-tools</span>
-                        <span class="badge px-2 py-0.5 rounded">automation</span>
-                    </div>
-                    <a href="https://github.com/SyDroX/agentic-cli-toolkit" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-orange-400 hover:underline hover:text-orange-300">View Source on GitHub →</a>
-                </div>
-                    <div class="project-preview" tabindex="0" aria-label="Agentic CLI Toolkit demo. Hover, focus, or click to play.">
+            <div class="bg-card border border-subtle uniform-card uniform-card--video uniform-card--landscape" data-hover-preview>
+                <div class="card-media"><div class="project-preview" tabindex="0" aria-label="Agentic CLI Toolkit demo. Hover, focus, or click to play.">
                         <video muted loop playsinline preload="metadata" poster="assets/agentic-cli-toolkit-demo.png" aria-label="Agentic CLI Toolkit demo video">
                             <source src="assets/agentic-cli-toolkit-demo.mp4" type="video/mp4">
-                        </video>
+                        </source></video>
                     </div>
-            </div>
+            </div><div class="card-content"><div class="card-heading"><h3 class="text-base font-bold text-white mb-1">Agentic CLI Toolkit</h3>
+                        <p class="text-xs text-gray-400 mb-3">Open Source Developer Tool</p>
+                        </div><p class="text-sm text-gray-300 mb-4 leading-relaxed">A Windows Terminal workspace launcher for AI-assisted development. It opens a focused two-window workspace with multi-tab sessions and automatic window snapping, so projects are ready to work in immediately.</p>
+                    <div class="card-footer"><div class="card-tags text-xs font-mono"><span class="badge px-2 py-0.5 rounded">windows-terminal</span>
+                        <span class="badge px-2 py-0.5 rounded">developer-tools</span>
+                        <span class="badge px-2 py-0.5 rounded">automation</span>
+                    </div><div class="card-links text-xs font-mono text-orange-400"><a href="https://github.com/SyDroX/agentic-cli-toolkit" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-orange-400 hover:underline hover:text-orange-300">View Source on GitHub →</a>
+                </div></div></div></div>
 
             <!-- Body Aparts -->
-            <div class="bg-card p-5 rounded-lg border border-subtle project-card flex flex-col">
-                <div class="landscape-preview"><iframe src="https://www.youtube-nocookie.com/embed/nedSk6gtM50" title="Body Aparts gameplay demo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
-                <div>
-                    <h3 class="text-base font-bold text-white mb-1">Body Aparts</h3>
+            <div class="bg-card border border-subtle uniform-card uniform-card--video uniform-card--landscape">
+                <div class="card-media"><div class="landscape-preview"><iframe title="Body Aparts gameplay demo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen data-src="https://www.youtube-nocookie.com/embed/nedSk6gtM50" hidden="hidden"></iframe><button type="button" class="video-load" aria-label="Play Body Aparts gameplay demo"><img src="https://i.ytimg.com/vi/nedSk6gtM50/hqdefault.jpg" alt="" loading="lazy"><span>▶ Play video</span></button></div>
+                </div><div class="card-content"><div class="card-heading"><h3 class="text-base font-bold text-white mb-1">Body Aparts</h3>
                     <p class="text-xs text-gray-400 mb-3">Global Game Jam 2024</p>
-                    <p class="text-sm text-gray-300 mb-4 leading-relaxed">
+                    </div><p class="text-sm text-gray-300 mb-4 leading-relaxed">
                         In this co-op game with crazy controls, you're a scientist who got bisected by an experiment gone wrong! Play as a pair of legs in a platforming segment and a torso-hand combo trying to navigate a maze while your universes are disintegrating until you get back together. Make sure to help each other out, otherwise you won't make it in one piece.
                     </p>
-                </div>
-                <div>
-                    <div class="flex flex-wrap gap-1.5 text-xs font-mono mb-3">
-                        <span class="badge px-2 py-0.5 rounded">c#</span>
+                <div class="card-footer"><div class="card-tags text-xs font-mono"><span class="badge px-2 py-0.5 rounded">c#</span>
                         <span class="badge px-2 py-0.5 rounded">unity</span>
-                    </div>
-                    <div class="flex gap-3 text-xs font-mono text-orange-400">
-                        <a href="https://globalgamejam.org/games/2024/body-aparts-9" target="_blank" class="hover:underline hover:text-orange-300">GGJ Page →</a>
+                    </div><div class="card-links text-xs font-mono text-orange-400"><a href="https://globalgamejam.org/games/2024/body-aparts-9" target="_blank" class="hover:underline hover:text-orange-300">GGJ Page →</a>
                         <a href="https://youtu.be/nedSk6gtM50" target="_blank" class="hover:underline hover:text-orange-300">Watch Demo →</a>
-                    </div>
-                </div>
-            </div>
+                    </div></div></div></div>
 
             <!-- TreeFighter III -->
-            <div class="bg-card p-5 rounded-lg border border-subtle project-card flex flex-col">
-                <div>
-                    <h3 class="text-base font-bold text-white mb-1">TreeFighter III</h3>
+            <div class="bg-card border border-subtle uniform-card uniform-card--compact">
+                <div class="card-content"><div class="card-heading"><h3 class="text-base font-bold text-white mb-1">TreeFighter III</h3>
                     <p class="text-xs text-gray-400 mb-3">Global Game Jam 2023</p>
-                    <p class="text-sm text-gray-300 mb-4">Arcade-style root warrior combat game created during GGJ 2023.</p>
-                </div>
-                <div>
-                    <div class="flex flex-wrap gap-1.5 text-xs font-mono mb-3">
-                        <span class="badge px-2 py-0.5 rounded">unity</span>
+                    </div><p class="text-sm text-gray-300 mb-4">Arcade-style root warrior combat game created during GGJ 2023.</p>
+                <div class="card-footer"><div class="card-tags text-xs font-mono"><span class="badge px-2 py-0.5 rounded">unity</span>
                         <span class="badge px-2 py-0.5 rounded">c#</span>
-                    </div>
-                    <a href="https://v3.globalgamejam.org/2023/games/tree-fighter-iii-root-warrior-4" target="_blank" class="text-xs font-mono text-orange-400 hover:underline hover:text-orange-300">GGJ Entry →</a>
-                </div>
-            </div>
+                    </div><div class="card-links text-xs font-mono text-orange-400"><a href="https://v3.globalgamejam.org/2023/games/tree-fighter-iii-root-warrior-4" target="_blank" class="text-xs font-mono text-orange-400 hover:underline hover:text-orange-300">GGJ Entry →</a>
+                </div></div></div></div>
 
             <!-- Dance Defense -->
-            <div class="bg-card p-5 rounded-lg border border-subtle project-card flex flex-col">
-                <div class="landscape-preview"><iframe src="https://www.youtube-nocookie.com/embed/gs5ZSMmxcWY" title="Dance Defense gameplay demo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
-                <div>
-                    <h3 class="text-base font-bold text-white mb-1">Dance Defense</h3>
+            <div class="bg-card border border-subtle uniform-card uniform-card--video uniform-card--landscape">
+                <div class="card-media"><div class="landscape-preview"><iframe title="Dance Defense gameplay demo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen data-src="https://www.youtube-nocookie.com/embed/gs5ZSMmxcWY" hidden="hidden"></iframe><button type="button" class="video-load" aria-label="Play Dance Defense gameplay demo"><img src="https://i.ytimg.com/vi/gs5ZSMmxcWY/hqdefault.jpg" alt="" loading="lazy"><span>▶ Play video</span></button></div>
+                </div><div class="card-content"><div class="card-heading"><h3 class="text-base font-bold text-white mb-1">Dance Defense</h3>
                     <p class="text-xs text-gray-400 mb-3">Global Game Jam 2020 · 3rd place</p>
-                    <p class="text-sm text-gray-300 mb-4 leading-relaxed">
+                    </div><p class="text-sm text-gray-300 mb-4 leading-relaxed">
                         Tower-defense game played with a dance pad. Tap the eight directions around you to repair your shield while defending against incoming attacks.
                     </p>
-                </div>
-                <div>
-                    <div class="flex flex-wrap gap-1.5 text-xs font-mono mb-3">
-                        <span class="badge px-2 py-0.5 rounded">unity</span>
+                <div class="card-footer"><div class="card-tags text-xs font-mono"><span class="badge px-2 py-0.5 rounded">unity</span>
                         <span class="badge px-2 py-0.5 rounded">c#</span>
-                    </div>
-                    <div class="flex gap-3 text-xs font-mono text-orange-400">
-                        <a href="https://www.mediafire.com/file/c8pgx4nzx3zioku/Dance_Defense.zip/file" target="_blank" class="hover:underline hover:text-orange-300">Download →</a>
+                    </div><div class="card-links text-xs font-mono text-orange-400"><a href="https://www.mediafire.com/file/c8pgx4nzx3zioku/Dance_Defense.zip/file" target="_blank" class="hover:underline hover:text-orange-300">Download →</a>
                         <a href="https://www.youtube.com/watch?v=gs5ZSMmxcWY&amp;feature=youtu.be" target="_blank" class="hover:underline hover:text-orange-300">Watch Demo →</a>
-                    </div>
-                </div>
-            </div>
+                    </div></div></div></div>
 
             <!-- Take Over -->
-            <div class="bg-card p-5 rounded-lg border border-subtle project-card flex flex-col">
-                <div>
-                    <h3 class="text-base font-bold text-white mb-1">Take Over</h3>
+            <div class="bg-card border border-subtle uniform-card uniform-card--compact">
+                <div class="card-content"><div class="card-heading"><h3 class="text-base font-bold text-white mb-1">Take Over</h3>
                     <p class="text-xs text-gray-400 mb-3">Global Game Jam 2018</p>
-                    <p class="text-sm text-gray-300 mb-4 leading-relaxed">
+                    </div><p class="text-sm text-gray-300 mb-4 leading-relaxed">
                         An alien that cannot survive Earth’s conditions takes control of electric toys. Starting in a baby’s room, you move between toys and fight off an endless toy army. I worked on development alongside Aviv Zvulun and Omri Goldberger.
                     </p>
-                </div>
-                <div>
-                    <div class="flex flex-wrap gap-1.5 text-xs font-mono mb-3">
-                        <span class="badge px-2 py-0.5 rounded">unity</span>
+                <div class="card-footer"><div class="card-tags text-xs font-mono"><span class="badge px-2 py-0.5 rounded">unity</span>
                         <span class="badge px-2 py-0.5 rounded">c#</span>
                         <span class="badge px-2 py-0.5 rounded">webgl</span>
-                    </div>
-                    <a href="https://lnf.itch.io/take-over" target="_blank" class="text-xs font-mono text-orange-400 hover:underline hover:text-orange-300">Play in Browser →</a>
-                </div>
-            </div>
+                    </div><div class="card-links text-xs font-mono text-orange-400"><a href="https://lnf.itch.io/take-over" target="_blank" class="text-xs font-mono text-orange-400 hover:underline hover:text-orange-300">Play in Browser →</a>
+                </div></div></div></div>
 
             <!-- Solitaire -->
-            <div class="bg-card p-5 rounded-lg border border-subtle project-card flex flex-col">
-                <div>
-                    <h3 class="text-base font-bold text-white mb-1">Solitaire WebGL</h3>
+            <div class="bg-card border border-subtle uniform-card uniform-card--compact">
+                <div class="card-content"><div class="card-heading"><h3 class="text-base font-bold text-white mb-1">Solitaire WebGL</h3>
                     <p class="text-xs text-gray-400 mb-3">Personal Project</p>
-                    <p class="text-sm text-gray-300 mb-4">Responsive WebGL card game for desktop and mobile browsers.</p>
-                </div>
-                <div>
-                    <div class="flex flex-wrap gap-1.5 text-xs font-mono mb-3">
-                        <span class="badge px-2 py-0.5 rounded">unity</span>
+                    </div><p class="text-sm text-gray-300 mb-4">Responsive WebGL card game for desktop and mobile browsers.</p>
+                <div class="card-footer"><div class="card-tags text-xs font-mono"><span class="badge px-2 py-0.5 rounded">unity</span>
                         <span class="badge px-2 py-0.5 rounded">webgl</span>
-                    </div>
-                    <a href="https://sydrox.itch.io/solitaire" target="_blank" class="text-xs font-mono text-orange-400 hover:underline hover:text-orange-300">Play in Browser →</a>
-                </div>
-            </div>
+                    </div><div class="card-links text-xs font-mono text-orange-400"><a href="https://sydrox.itch.io/solitaire" target="_blank" class="text-xs font-mono text-orange-400 hover:underline hover:text-orange-300">Play in Browser →</a>
+                </div></div></div></div>
 
         </div>
     </section>
@@ -576,6 +507,39 @@
             preview.addEventListener('click', playPreview);
         });
 
+
+        // Do not contact the YouTube player until the visitor requests playback.
+        document.querySelectorAll('.video-load').forEach(button => {
+            button.addEventListener('click', () => {
+                const player = button.parentElement.querySelector('iframe');
+                player.src = player.dataset.src + '?autoplay=1&playsinline=1';
+                player.hidden = false;
+                button.remove();
+            });
+        });
+        // Load only the selected demo; switching stops the previous video.
+        document.querySelectorAll('[data-demo-gallery]').forEach((gallery) => {
+            const stage = gallery.querySelector('.system-video');
+            const player = gallery.querySelector('iframe');
+            gallery.querySelectorAll('[data-demo-id]').forEach((button) => {
+                button.addEventListener('click', () => {
+                    if (button.getAttribute('aria-pressed') === 'true') return;
+                    gallery.querySelectorAll('[data-demo-id]').forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+                    stage.classList.toggle('is-portrait', button.dataset.demoPortrait === 'true');
+                    stage.classList.toggle('crop-product', button.dataset.demoId === 'p-ZyW23O-6U');
+                    player.title = button.dataset.demoTitle;
+                    player.dataset.src = 'https://www.youtube-nocookie.com/embed/' + button.dataset.demoId;
+                    const preview = stage.querySelector('.video-load');
+                    if (preview) {
+                        preview.setAttribute('aria-label', 'Play ' + button.dataset.demoTitle);
+                        preview.querySelector('img').src = 'https://i.ytimg.com/vi/' + button.dataset.demoId + '/hqdefault.jpg';
+                    } else {
+                        player.src = player.dataset.src + '?autoplay=1&playsinline=1';
+                    }
+                });
+            });
+        });
+
         // Existing matrix background animation.
         const canvas = document.getElementById('matrix-canvas');
         const ctx = canvas.getContext('2d');
@@ -613,6 +577,35 @@
         }
 
         setInterval(drawMatrix, 40);
+    </script>
+
+    <script>
+        // Pack naturally sized cards into the next available column.
+        (() => {
+            const grids = [...document.querySelectorAll('.systems-grid, .project-grid')];
+            let frame;
+            const layout = () => {
+                const desktop = window.matchMedia('(min-width: 768px)').matches;
+                grids.forEach(grid => {
+                    const cards = [...grid.querySelectorAll(':scope > .uniform-card')];
+                    grid.classList.toggle('masonry-ready', desktop);
+                    cards.forEach(card => {
+                        card.style.gridRowEnd = desktop
+                            ? 'span ' + Math.ceil(card.getBoundingClientRect().height + 24)
+                            : '';
+                    });
+                });
+            };
+            const schedule = () => { cancelAnimationFrame(frame); frame = requestAnimationFrame(layout); };
+            const observer = new ResizeObserver(schedule);
+            grids.forEach(grid => {
+                [...grid.children].filter(card => card.classList.contains('uniform-card')).forEach(card => observer.observe(card));
+            });
+            window.addEventListener('resize', schedule);
+            window.addEventListener('load', schedule);
+            document.fonts.ready.then(schedule);
+            schedule();
+        })();
     </script>
 </body>
 </html>
