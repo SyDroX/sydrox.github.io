@@ -171,15 +171,13 @@
         @media (min-width: 768px) {
             .systems-grid.masonry-ready, .project-grid.masonry-ready { grid-auto-rows: 1px; row-gap: 0; }
         }
-        /* 9:16 source cropped to 3:4, with per-project crop placement. */
-        .portrait-preview, .system-video.is-portrait { aspect-ratio: 3 / 4; }
+        /* 9:16 source cropped to 1:1, with per-project crop placement. */
+        .portrait-preview, .system-video.is-portrait { aspect-ratio: 1 / 1; }
         .portrait-preview iframe, .system-video.is-portrait iframe {
-            width: 100%; height: 133.333333%; top: -16.666667%; bottom: auto;
+            width: 100%; height: 177.777778%; top: -38.888889%; bottom: auto;
         }
-        .system-video.crop-product iframe { top: -22.222222%; }
-        .portrait-preview--ormi iframe { top: -26.666667%; }
+        .portrait-preview--ormi iframe { top: -62.222222%; }
         .system-video.is-portrait .video-load img { object-position: center 50%; }
-        .system-video.crop-product .video-load img { object-position: center 66.666667%; }
         .portrait-preview--ormi .video-load img { object-position: center 80%; }
     </style>
 </head>
@@ -191,7 +189,7 @@
     <!-- Header Section -->
     <header class="mb-10 sm:mb-12 border-b border-subtle pb-6 sm:pb-8" data-analytics-section="header">
         <h1 class="text-3xl font-bold text-white mb-2 leading-tight">Kostya Sydoruk</h1>
-        <p class="text-base sm:text-lg text-orange-400 font-medium mb-4 leading-snug">Lead Software Engineer | C# &amp; Unity Specialist</p>
+        <p class="text-base sm:text-lg text-orange-400 font-medium mb-4 leading-snug">Software Engineer | C# &amp; Unity Specialist</p>
         <p class="text-sm text-gray-300 max-w-2xl leading-relaxed mb-6">
             Software engineer with over 12 years of experience across industrial automation, healthcare, VR simulation, and games. I work mainly with C#, Unity, .NET, hardware integrations, and computer vision.
         </p>
@@ -217,7 +215,7 @@
                 <button type="button" class="video-load" aria-label="Play SkillReal — Product Demo"><img src="https://i.ytimg.com/vi/8j-wxSrviU4/hqdefault.jpg" alt="" loading="lazy"><span>▶ Play video</span></button></div>
                 </div><div class="card-content"><div class="card-heading"><h3 class="text-lg font-bold text-white">DTA Automated Inspection System</h3>
                     <p class="text-xs font-mono text-gray-400 leading-relaxed">
-                        <span class="block">Lead Software Engineer</span>
+                        <span class="block">Software Engineer</span>
                         <span class="block">@ SkillReal (2025–Present)</span>
                     </p>
                 </div><p class="text-sm text-gray-300 mb-4 leading-relaxed">
@@ -235,16 +233,16 @@
                 </div></div></div></div>
 
             <!-- GaitBetter -->
-            <div class="bg-card border border-subtle uniform-card uniform-card--video uniform-card--portrait">
+            <div class="bg-card border border-subtle uniform-card uniform-card--video uniform-card--landscape">
                 <div class="card-media"><div class="system-media" data-demo-gallery>
-                    <div class="system-video is-portrait crop-product"><iframe title="GaitBetter Rehabilitation Platform — Product Demo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen data-src="https://www.youtube-nocookie.com/embed/p-ZyW23O-6U" hidden="hidden"></iframe><button type="button" class="video-load" aria-label="Play GaitBetter Rehabilitation Platform — Product Demo"><img src="https://i.ytimg.com/vi/p-ZyW23O-6U/hqdefault.jpg" alt="" loading="lazy"><span>▶ Play video</span></button></div>
+                    <div class="system-video"><iframe title="GaitBetter Rehabilitation Platform — Intro Demo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen data-src="https://www.youtube-nocookie.com/embed/XlhESZtrNA0" hidden="hidden"></iframe><button type="button" class="video-load" aria-label="Play GaitBetter Rehabilitation Platform — Intro Demo"><img src="https://i.ytimg.com/vi/XlhESZtrNA0/hqdefault.jpg" alt="" loading="lazy"><span>▶ Play video</span></button></div>
                     <div class="demo-switcher" role="group" aria-label="Choose GaitBetter Rehabilitation Platform video">
-                        <button type="button" data-demo-id="p-ZyW23O-6U" data-demo-portrait="true" data-demo-title="GaitBetter Rehabilitation Platform — Product Demo" aria-pressed="true">Product Demo</button>
-                        <button type="button" data-demo-id="wN-bFhF7riQ" data-demo-portrait="true" data-demo-title="GaitBetter Rehabilitation Platform — Rehab Demo" aria-pressed="false">Rehab Demo</button>
+                        <button type="button" data-demo-id="XlhESZtrNA0" data-demo-portrait="false" data-demo-title="GaitBetter Rehabilitation Platform — Intro Demo" aria-pressed="true">Intro Demo</button>
+                        <button type="button" data-demo-id="oi5f1FlORnE" data-demo-portrait="false" data-demo-title="GaitBetter Rehabilitation Platform — Rehab Demo" aria-pressed="false">Rehab Demo</button>
                     </div>
                 </div>
             </div><div class="card-content"><div class="card-heading"><h3 class="text-lg font-bold text-white">GaitBetter Rehabilitation Platform</h3>
-                    <span class="text-xs font-mono text-gray-400">Senior Engineer @ GaitBetter (2022–2024)</span>
+                    <span class="text-xs font-mono text-gray-400">Software Engineer @ GaitBetter (2022–2024)</span>
                 </div><p class="text-sm text-gray-300 mb-4 leading-relaxed">
                     A physiotherapy system for older adults and people with conditions such as Parkinson’s disease. A low-end computer, TV, Intel RealSense camera, and two physical buttons are mounted to a treadmill. Patients move through engaging, gamified cognitive scenarios while walking, combining physical movement with decision-making tasks to improve their motor-cognitive reserve.
                 </p>
@@ -256,22 +254,20 @@
                     <span class="badge px-2.5 py-1 rounded">computer-vision</span>
                     <span class="badge px-2.5 py-1 rounded">hardware-integration</span>
                     <span class="badge px-2.5 py-1 rounded">rest-api</span>
-                </div><div class="card-links text-xs font-mono text-orange-400"><a href="https://youtu.be/p-ZyW23O-6U" target="_blank" class="hover:underline hover:text-orange-300">Product Demo →</a>
-                    <a href="https://youtube.com/shorts/wN-bFhF7riQ?feature=share" target="_blank" class="hover:underline hover:text-orange-300">Rehab Demo →</a>
                 </div></div></div></div>
 
             
             <!-- Simbionix VR -->
             <div class="bg-card border border-subtle uniform-card uniform-card--video uniform-card--landscape">
                 <div class="card-media"><div class="system-media" data-demo-gallery>
-                    <div class="system-video"><iframe title="VR Training Simulators — Demo 1" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen data-src="https://www.youtube-nocookie.com/embed/6w0lbcc4y1o" hidden="hidden"></iframe><button type="button" class="video-load" aria-label="Play VR Training Simulators — Demo 1"><img src="https://i.ytimg.com/vi/6w0lbcc4y1o/hqdefault.jpg" alt="" loading="lazy"><span>▶ Play video</span></button></div>
+                    <div class="system-video"><iframe title="VR Training Simulators — Trauma Care Demo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen data-src="https://www.youtube-nocookie.com/embed/6w0lbcc4y1o" hidden="hidden"></iframe><button type="button" class="video-load" aria-label="Play VR Training Simulators — Trauma Care Demo"><img src="https://i.ytimg.com/vi/6w0lbcc4y1o/hqdefault.jpg" alt="" loading="lazy"><span>▶ Play video</span></button></div>
                     <div class="demo-switcher" role="group" aria-label="Choose VR Training Simulators video">
-                        <button type="button" data-demo-id="6w0lbcc4y1o" data-demo-portrait="false" data-demo-title="VR Training Simulators — Demo 1" aria-pressed="true">Demo 1</button>
-                        <button type="button" data-demo-id="ZTjvy0G3Q5M" data-demo-portrait="false" data-demo-title="VR Training Simulators — Demo 2" aria-pressed="false">Demo 2</button>
+                        <button type="button" data-demo-id="6w0lbcc4y1o" data-demo-portrait="false" data-demo-title="VR Training Simulators — Trauma Care Demo" aria-pressed="true">Trauma Care Demo</button>
+                        <button type="button" data-demo-id="ZTjvy0G3Q5M" data-demo-portrait="false" data-demo-title="VR Training Simulators — Combat Simulation Demo" aria-pressed="false">Combat Simulation Demo</button>
                     </div>
                 </div>
             </div><div class="card-content"><div class="card-heading"><h3 class="text-lg font-bold text-white">VR Training Simulators</h3>
-                    <span class="text-xs font-mono text-gray-400">VR Software Engineer @ 3D Systems (2019–2021)</span>
+                    <span class="text-xs font-mono text-gray-400">Software Engineer @ 3D Systems (2019–2021)</span>
                 </div><p class="text-sm text-gray-300 mb-4 leading-relaxed">
                     Training products built around bringing physical equipment into VR with accurate tracking. The combat simulator supports one-to-four-player missions using wireless HTC Vive Pro backpacks and tracked M4 training rifles with working trigger and magazine inputs. Trauma VR uses a tracked medical mannequin so trainees can assess an unconscious patient, clear an airway, check vital signs, and practise procedures with physical tools.
                 </p>
@@ -281,8 +277,6 @@
                     <span class="badge px-2.5 py-1 rounded">motion-tracking</span>
                     <span class="badge px-2.5 py-1 rounded">hardware-integration</span>
                     <span class="badge px-2.5 py-1 rounded">networking</span>
-                </div><div class="card-links text-xs font-mono text-orange-400"><a href="https://youtu.be/6w0lbcc4y1o" target="_blank" class="hover:underline hover:text-orange-300">Watch Demo →</a>
-                    <a href="https://youtu.be/ZTjvy0G3Q5M" target="_blank" class="hover:underline hover:text-orange-300">Watch Demo →</a>
                 </div></div></div></div>
 
         </div>
@@ -332,8 +326,7 @@
                         <span class="badge px-2 py-0.5 rounded">unity</span>
                         <span class="badge px-2 py-0.5 rounded">android</span>
                     </div><div class="card-links text-xs font-mono text-orange-400"><a href="https://www.mediafire.com/file/2cuujenfjrc3ecz/Ormi.29.12.2024.apk/file" target="_blank" class="hover:underline hover:text-orange-300">Download APK →</a>
-                        <a href="https://youtube.com/shorts/Hgt7yur5RKc" target="_blank" class="hover:underline hover:text-orange-300">Watch Demo →</a>
-                    </div></div></div></div>
+                        </div></div></div></div>
 
             <!-- Agentic CLI Toolkit -->
             <div class="bg-card border border-subtle uniform-card uniform-card--video uniform-card--landscape" data-hover-preview>
@@ -353,8 +346,8 @@
 
             <!-- Body Aparts -->
             <div class="bg-card border border-subtle uniform-card uniform-card--video uniform-card--landscape">
-                <div class="card-media"><div class="landscape-preview"><iframe title="Body Aparts gameplay demo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen data-src="https://www.youtube-nocookie.com/embed/nedSk6gtM50" hidden="hidden"></iframe><button type="button" class="video-load" aria-label="Play Body Aparts gameplay demo"><img src="https://i.ytimg.com/vi/nedSk6gtM50/hqdefault.jpg" alt="" loading="lazy"><span>▶ Play video</span></button></div>
-                </div><div class="card-content"><div class="card-heading"><h3 class="text-base font-bold text-white mb-1">Body Aparts</h3>
+                <div class="card-media"><div class="system-media" data-demo-gallery=""><div class="system-video"><iframe title="Body Aparts gameplay demo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen data-src="https://www.youtube-nocookie.com/embed/nedSk6gtM50" hidden="hidden"></iframe><button type="button" class="video-load" aria-label="Play Body Aparts gameplay demo"><img src="https://i.ytimg.com/vi/nedSk6gtM50/hqdefault.jpg" alt="" loading="lazy"><span>▶ Play video</span></button></div>
+                <div class="demo-switcher" role="group" aria-label="Choose Body Aparts video"><button type="button" data-demo-id="nedSk6gtM50" data-demo-portrait="false" data-demo-title="Body Aparts — Gameplay" aria-pressed="true">Gameplay</button><button type="button" data-demo-id="h6V-rqsZOVk" data-demo-portrait="false" data-demo-title="Body Aparts — Cinematic" aria-pressed="false">Cinematic</button></div></div></div><div class="card-content"><div class="card-heading"><h3 class="text-base font-bold text-white mb-1">Body Aparts</h3>
                     <p class="text-xs text-gray-400 mb-3">Global Game Jam 2024</p>
                     </div><p class="text-sm text-gray-300 mb-4 leading-relaxed">
                         In this co-op game with crazy controls, you're a scientist who got bisected by an experiment gone wrong! Play as a pair of legs in a platforming segment and a torso-hand combo trying to navigate a maze while your universes are disintegrating until you get back together. Make sure to help each other out, otherwise you won't make it in one piece.
@@ -362,8 +355,7 @@
                 <div class="card-footer"><div class="card-tags text-xs font-mono"><span class="badge px-2 py-0.5 rounded">c#</span>
                         <span class="badge px-2 py-0.5 rounded">unity</span>
                     </div><div class="card-links text-xs font-mono text-orange-400"><a href="https://globalgamejam.org/games/2024/body-aparts-9" target="_blank" class="hover:underline hover:text-orange-300">GGJ Page →</a>
-                        <a href="https://youtu.be/nedSk6gtM50" target="_blank" class="hover:underline hover:text-orange-300">Watch Demo →</a>
-                    </div></div></div></div>
+                        </div></div></div></div>
 
             <!-- TreeFighter III -->
             <div class="bg-card border border-subtle uniform-card uniform-card--compact">
@@ -386,8 +378,7 @@
                 <div class="card-footer"><div class="card-tags text-xs font-mono"><span class="badge px-2 py-0.5 rounded">unity</span>
                         <span class="badge px-2 py-0.5 rounded">c#</span>
                     </div><div class="card-links text-xs font-mono text-orange-400"><a href="https://www.mediafire.com/file/c8pgx4nzx3zioku/Dance_Defense.zip/file" target="_blank" class="hover:underline hover:text-orange-300">Download →</a>
-                        <a href="https://www.youtube.com/watch?v=gs5ZSMmxcWY&amp;feature=youtu.be" target="_blank" class="hover:underline hover:text-orange-300">Watch Demo →</a>
-                    </div></div></div></div>
+                        </div></div></div></div>
 
             <!-- Take Over -->
             <div class="bg-card border border-subtle uniform-card uniform-card--compact">
@@ -526,7 +517,6 @@
                     if (button.getAttribute('aria-pressed') === 'true') return;
                     gallery.querySelectorAll('[data-demo-id]').forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
                     stage.classList.toggle('is-portrait', button.dataset.demoPortrait === 'true');
-                    stage.classList.toggle('crop-product', button.dataset.demoId === 'p-ZyW23O-6U');
                     player.title = button.dataset.demoTitle;
                     player.dataset.src = 'https://www.youtube-nocookie.com/embed/' + button.dataset.demoId;
                     const preview = stage.querySelector('.video-load');
