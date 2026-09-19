@@ -173,12 +173,11 @@
         }
         /* 9:16 source cropped to 1:1, with per-project crop placement. */
         .portrait-preview, .system-video.is-portrait { aspect-ratio: 1 / 1; }
-        .uniform-card .portrait-preview--ormi { aspect-ratio: 3 / 4; }
         .portrait-preview iframe, .system-video.is-portrait iframe {
             width: 100%; height: 177.777778%; top: -38.888889%; bottom: auto;
         }
-        .portrait-preview--ormi iframe { top: -62.222222%; }
-        .portrait-preview--ormi video { object-fit: contain; }
+        .portrait-preview--ormi { aspect-ratio: 3 / 4; }
+        .portrait-preview--ormi iframe { height: 133.333333%; top: -26.666667%; }
         .system-video.is-portrait .video-load img { object-position: center 50%; }
         .portrait-preview--ormi .video-load img { object-position: center 80%; }
     </style>
@@ -235,12 +234,12 @@
                 </div></div></div></div>
 
             <!-- GaitBetter -->
-            <div class="bg-card border border-subtle uniform-card uniform-card--video uniform-card--landscape" data-hover-preview>
+            <div class="bg-card border border-subtle uniform-card uniform-card--video uniform-card--landscape">
                 <div class="card-media"><div class="system-media" data-demo-gallery>
-                    <div class="system-video"><video muted loop playsinline preload="metadata" poster="assets/gaitbetter-demo.png" aria-label="GaitBetter Rehabilitation Platform — Intro Demo"><source src="assets/GaitBetter-Demo.mp4?v=2" type="video/mp4"></video></div>
+                    <div class="system-video"><iframe title="GaitBetter Rehabilitation Platform — Intro Demo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen data-src="https://www.youtube-nocookie.com/embed/XlhESZtrNA0" hidden="hidden"></iframe><button type="button" class="video-load" aria-label="Play GaitBetter Rehabilitation Platform — Intro Demo"><img src="https://i.ytimg.com/vi/XlhESZtrNA0/hqdefault.jpg" alt="" loading="lazy"><span>▶ Play video</span></button></div>
                     <div class="demo-switcher" role="group" aria-label="Choose GaitBetter Rehabilitation Platform video">
-                        <button type="button" data-demo-src="assets/GaitBetter-Demo.mp4?v=2" data-demo-poster="assets/gaitbetter-demo.png" data-demo-title="GaitBetter Rehabilitation Platform — Intro Demo" aria-pressed="true">Intro Demo</button>
-                        <button type="button" data-demo-src="assets/GaitBetter-Rehab.mp4" data-demo-poster="assets/gaitbetter-rehab.png" data-demo-title="GaitBetter Rehabilitation Platform — Rehab Demo" aria-pressed="false">Rehab Demo</button>
+                        <button type="button" data-demo-id="XlhESZtrNA0" data-demo-portrait="false" data-demo-title="GaitBetter Rehabilitation Platform — Intro Demo" aria-pressed="true">Intro Demo</button>
+                        <button type="button" data-demo-id="oi5f1FlORnE" data-demo-portrait="false" data-demo-title="GaitBetter Rehabilitation Platform — Rehab Demo" aria-pressed="false">Rehab Demo</button>
                     </div>
                 </div>
             </div><div class="card-content"><div class="card-heading"><h3 class="text-lg font-bold text-white">GaitBetter Rehabilitation Platform</h3>
@@ -260,12 +259,12 @@
 
             
             <!-- Simbionix VR -->
-            <div class="bg-card border border-subtle uniform-card uniform-card--video uniform-card--landscape" data-hover-preview>
+            <div class="bg-card border border-subtle uniform-card uniform-card--video uniform-card--landscape">
                 <div class="card-media"><div class="system-media" data-demo-gallery>
-                    <div class="system-video"><video muted loop playsinline preload="metadata" poster="assets/simbionix-combat.png" aria-label="VR Training Simulators — Combat Simulation Demo"><source src="assets/Simbionix - Combat Simulator.mp4?v=2" type="video/mp4"></video></div>
+                    <div class="system-video"><iframe title="VR Training Simulators — Trauma Care Demo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen data-src="https://www.youtube-nocookie.com/embed/6w0lbcc4y1o" hidden="hidden"></iframe><button type="button" class="video-load" aria-label="Play VR Training Simulators — Trauma Care Demo"><img src="https://i.ytimg.com/vi/6w0lbcc4y1o/hqdefault.jpg" alt="" loading="lazy"><span>▶ Play video</span></button></div>
                     <div class="demo-switcher" role="group" aria-label="Choose VR Training Simulators video">
-                        <button type="button" data-demo-src="assets/Simbionix - Combat Simulator.mp4?v=2" data-demo-poster="assets/simbionix-combat.png" data-demo-title="VR Training Simulators — Combat Simulation Demo" aria-pressed="true">Combat Simulation Demo</button>
-                        <button type="button" data-demo-src="assets/Trauma VR - Simbionix.mp4?v=2" data-demo-poster="assets/trauma-vr.png" data-demo-title="VR Training Simulators — Trauma Care Demo" aria-pressed="false">Trauma Care Demo</button>
+                        <button type="button" data-demo-id="6w0lbcc4y1o" data-demo-portrait="false" data-demo-title="VR Training Simulators — Trauma Care Demo" aria-pressed="true">Trauma Care Demo</button>
+                        <button type="button" data-demo-id="ZTjvy0G3Q5M" data-demo-portrait="false" data-demo-title="VR Training Simulators — Combat Simulation Demo" aria-pressed="false">Combat Simulation Demo</button>
                     </div>
                 </div>
             </div><div class="card-content"><div class="card-heading"><h3 class="text-lg font-bold text-white">VR Training Simulators</h3>
@@ -317,8 +316,8 @@
                 </div></div></div></div>
 
             <!-- Ormi -->
-            <div class="bg-card border border-subtle uniform-card uniform-card--video uniform-card--portrait" data-hover-preview>
-                <div class="card-media"><div class="portrait-preview portrait-preview--ormi project-preview"><video muted loop playsinline preload="metadata" poster="assets/ormi-gameplay.png" aria-label="Ormi gameplay demo"><source src="assets/Ormi Gameplay.mp4" type="video/mp4"></video></div>
+            <div class="bg-card border border-subtle uniform-card uniform-card--video uniform-card--portrait">
+                <div class="card-media"><div class="portrait-preview portrait-preview--ormi"><iframe title="Ormi gameplay demo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen data-src="https://www.youtube-nocookie.com/embed/Hgt7yur5RKc" hidden="hidden"></iframe><button type="button" class="video-load" aria-label="Play Ormi gameplay demo"><img src="https://i.ytimg.com/vi/Hgt7yur5RKc/hqdefault.jpg" alt="" loading="lazy"><span>▶ Play video</span></button></div>
             </div><div class="card-content"><div class="card-heading"><h3 class="text-base font-bold text-white mb-1">Ormi</h3>
                     <p class="text-xs text-gray-400 mb-3">Mobile Android Game</p>
                     </div><p class="text-sm text-gray-300 mb-4 leading-relaxed">
@@ -347,9 +346,9 @@
                 </div></div></div></div>
 
             <!-- Body Aparts -->
-            <div class="bg-card border border-subtle uniform-card uniform-card--video uniform-card--landscape" data-hover-preview>
-                <div class="card-media"><div class="system-media" data-demo-gallery><div class="system-video"><video muted loop playsinline preload="metadata" poster="assets/body-parts-gameplay.png" aria-label="Body Aparts gameplay demo"><source src="assets/Body Parts Gameplay - Global Game Jam 2024.mp4" type="video/mp4"></video></div>
-                <div class="demo-switcher" role="group" aria-label="Choose Body Aparts video"><button type="button" data-demo-src="assets/Body Parts Gameplay - Global Game Jam 2024.mp4" data-demo-poster="assets/body-parts-gameplay.png" data-demo-title="Body Aparts — Gameplay" aria-pressed="true">Gameplay</button><button type="button" data-demo-src="assets/Body Aparts Cinematic - Global Game Jam 2024.mp4" data-demo-poster="assets/body-aparts-cinematic.png" data-demo-title="Body Aparts — Cinematic" aria-pressed="false">Cinematic</button></div></div></div><div class="card-content"><div class="card-heading"><h3 class="text-base font-bold text-white mb-1">Body Aparts</h3>
+            <div class="bg-card border border-subtle uniform-card uniform-card--video uniform-card--landscape">
+                <div class="card-media"><div class="system-media" data-demo-gallery=""><div class="system-video"><iframe title="Body Aparts gameplay demo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen data-src="https://www.youtube-nocookie.com/embed/nedSk6gtM50" hidden="hidden"></iframe><button type="button" class="video-load" aria-label="Play Body Aparts gameplay demo"><img src="https://i.ytimg.com/vi/nedSk6gtM50/hqdefault.jpg" alt="" loading="lazy"><span>▶ Play video</span></button></div>
+                <div class="demo-switcher" role="group" aria-label="Choose Body Aparts video"><button type="button" data-demo-id="nedSk6gtM50" data-demo-portrait="false" data-demo-title="Body Aparts — Gameplay" aria-pressed="true">Gameplay</button><button type="button" data-demo-id="h6V-rqsZOVk" data-demo-portrait="false" data-demo-title="Body Aparts — Cinematic" aria-pressed="false">Cinematic</button></div></div></div><div class="card-content"><div class="card-heading"><h3 class="text-base font-bold text-white mb-1">Body Aparts</h3>
                     <p class="text-xs text-gray-400 mb-3">Global Game Jam 2024</p>
                     </div><p class="text-sm text-gray-300 mb-4 leading-relaxed">
                         In this co-op game with crazy controls, you're a scientist who got bisected by an experiment gone wrong! Play as a pair of legs in a platforming segment and a torso-hand combo trying to navigate a maze while your universes are disintegrating until you get back together. Make sure to help each other out, otherwise you won't make it in one piece.
@@ -370,8 +369,8 @@
                 </div></div></div></div>
 
             <!-- Dance Defense -->
-            <div class="bg-card border border-subtle uniform-card uniform-card--video uniform-card--landscape" data-hover-preview>
-                <div class="card-media"><div class="landscape-preview project-preview"><video muted loop playsinline preload="metadata" poster="assets/dance-defense.png" aria-label="Dance Defense gameplay demo"><source src="assets/Dance Defense - Global Game Jam 2020.mp4" type="video/mp4"></video></div>
+            <div class="bg-card border border-subtle uniform-card uniform-card--video uniform-card--landscape">
+                <div class="card-media"><div class="landscape-preview"><iframe title="Dance Defense gameplay demo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen data-src="https://www.youtube-nocookie.com/embed/gs5ZSMmxcWY" hidden="hidden"></iframe><button type="button" class="video-load" aria-label="Play Dance Defense gameplay demo"><img src="https://i.ytimg.com/vi/gs5ZSMmxcWY/hqdefault.jpg" alt="" loading="lazy"><span>▶ Play video</span></button></div>
                 </div><div class="card-content"><div class="card-heading"><h3 class="text-base font-bold text-white mb-1">Dance Defense</h3>
                     <p class="text-xs text-gray-400 mb-3">Global Game Jam 2020 · 3rd place</p>
                     </div><p class="text-sm text-gray-300 mb-4 leading-relaxed">
@@ -473,8 +472,8 @@
         // Project previews remain a still image until the visitor intentionally hovers or focuses the card.
         // This keeps the page quiet on load while making the demos easy to discover.
         document.querySelectorAll('[data-hover-preview]').forEach((card) => {
-            const preview = card.querySelector('.project-preview, .system-video');
-            const video = card.querySelector('video');
+            const preview = card.querySelector('.project-preview');
+            const video = preview?.querySelector('video');
 
             if (!preview || !video) return;
 
@@ -510,18 +509,24 @@
                 button.remove();
             });
         });
-        // Switch local demo videos without loading every variant up front.
+        // Load only the selected demo; switching stops the previous video.
         document.querySelectorAll('[data-demo-gallery]').forEach((gallery) => {
-            const player = gallery.querySelector('video');
-            const source = player?.querySelector('source');
-            gallery.querySelectorAll('[data-demo-src]').forEach((button) => {
+            const stage = gallery.querySelector('.system-video');
+            const player = gallery.querySelector('iframe');
+            gallery.querySelectorAll('[data-demo-id]').forEach((button) => {
                 button.addEventListener('click', () => {
                     if (button.getAttribute('aria-pressed') === 'true') return;
-                    gallery.querySelectorAll('[data-demo-src]').forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
-                    player.pause();
-                    source.src = button.dataset.demoSrc;
-                    player.poster = button.dataset.demoPoster;
-                    player.load();
+                    gallery.querySelectorAll('[data-demo-id]').forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+                    stage.classList.toggle('is-portrait', button.dataset.demoPortrait === 'true');
+                    player.title = button.dataset.demoTitle;
+                    player.dataset.src = 'https://www.youtube-nocookie.com/embed/' + button.dataset.demoId;
+                    const preview = stage.querySelector('.video-load');
+                    if (preview) {
+                        preview.setAttribute('aria-label', 'Play ' + button.dataset.demoTitle);
+                        preview.querySelector('img').src = 'https://i.ytimg.com/vi/' + button.dataset.demoId + '/hqdefault.jpg';
+                    } else {
+                        player.src = player.dataset.src + '?autoplay=1&playsinline=1';
+                    }
                 });
             });
         });
