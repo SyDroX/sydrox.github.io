@@ -70,6 +70,10 @@
             object-fit: cover;
         }
 
+        .uniform-card .project-preview.project-preview--square {
+            aspect-ratio: 1 / 1;
+        }
+
         @media (max-width: 640px) {
             html {
                 font-size: 100%;
@@ -315,8 +319,12 @@
                 </div></div></div></div>
 
             <!-- Ormi -->
-            <div class="bg-card border border-subtle uniform-card uniform-card--video uniform-card--portrait">
-                <div class="card-media"><div class="portrait-preview portrait-preview--ormi"><iframe title="Ormi gameplay demo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen data-src="https://www.youtube-nocookie.com/embed/Hgt7yur5RKc" hidden="hidden"></iframe><button type="button" class="video-load" aria-label="Play Ormi gameplay demo"><img src="https://i.ytimg.com/vi/Hgt7yur5RKc/hqdefault.jpg" alt="" loading="lazy"><span>▶ Play video</span></button></div>
+            <div class="bg-card border border-subtle uniform-card uniform-card--video uniform-card--portrait" data-hover-preview>
+                <div class="card-media"><div class="project-preview project-preview--square" tabindex="0" aria-label="Ormi gameplay demo. Hover, focus, or click to play.">
+                        <video muted loop playsinline preload="metadata" poster="assets/ormi-demo.png" aria-label="Ormi gameplay demo video">
+                            <source src="assets/ormi-demo.mp4" type="video/mp4">
+                        </video>
+                    </div>
             </div><div class="card-content"><div class="card-heading"><h3 class="text-base font-bold text-white mb-1">Ormi</h3>
                     <p class="text-xs text-gray-400 mb-3">Mobile Android Game</p>
                     </div><p class="text-sm text-gray-300 mb-4 leading-relaxed">
